@@ -1,0 +1,34 @@
+name: Update SEC Catalyst JSON
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '10 7 * * 1-5'
+      timezone: 'Asia/Seoul'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch latest SEC 8-K / 6-K
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+        run: python scripts/fetch_sec.py
+      - name: Commit JSON if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/sec_latest.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Update SEC latest filings"
+            git push
+          fi
