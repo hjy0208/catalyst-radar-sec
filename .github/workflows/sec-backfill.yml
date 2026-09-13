@@ -1,0 +1,32 @@
+name: Backfill SEC Catalyst 90d
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Scan SEC 8-K / 6-K for future catalysts (90 days)
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+        run: python scripts/fetch_sec_backfill.py
+      - name: Commit backfill JSON
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/sec_backfill_90d.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Backfill SEC catalyst calendar 90d"
+            git push
+          fi
