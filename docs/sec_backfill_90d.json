@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-09-13T06:40:59.026318+00:00",
+  "source": "SEC EDGAR lightweight 90-day calendar backfill via GitHub Actions",
+  "days": 90,
+  "all_candidate_filings": 19406,
+  "selected_filings": 600,
+  "primary_docs_fetched": 129,
+  "time_budget_sec": 480,
+  "events": []
+}
