@@ -20,18 +20,29 @@ FORMS = {'8-K','8-K/A','6-K','6-K/A'}
 PRIORITY_ITEMS = {'1.01','1.02','2.01','2.02','7.01','8.01'}
 MAX_8K_INDEX = 500
 MAX_6K_INDEX = 100
-MAX_DOC_FETCHES = 240
+MAX_DOC_FETCHES = 280
 TIME_BUDGET_SEC = 8 * 60
 WORKERS = 4
 
+# Calendar 후보는 "미래 의도/시점"과 "투자 이벤트"가 한 문장 또는 인접 문장에 같이 있어야 합니다.
 FUTURE_RE = re.compile(
-    r'(expected\s+to|scheduled\s+to|plans?\s+to|planned\s+to|intends?\s+to|targets?\s+to|aims?\s+to|'
-    r'anticipated\s+to|projected\s+to|slated\s+to|will\s+(?:announce|launch|commence|begin|start|submit|complete|report|release|present)|'
-    r'PDUFA|top[- ]?line|commercial\s+launch|phase\s*[123].{0,100}(?:data|results?)|'
-    r'20\d{2}\s*Q[1-4]|Q[1-4]\s*20\d{2}|H[12]\s*20\d{2}|20\d{2}\s*H[12])', re.I)
+    r'(expects?(?:\s+to|\s+that)|expected\s+to|scheduled(?:\s+to|\s+for)|plans?(?:\s+to|\s+for)|planned\s+to|'
+    r'intends?(?:\s+to|\s+for)|targets?(?:\s+to|\s+for)|aims?(?:\s+to|\s+for)|anticipates?(?:\s+to|\s+that)|'
+    r'projected\s+to|slated\s+to|on\s+track\s+to|set\s+to|due\s+(?:on|in|by)|'
+    r'will\s+(?:announce|launch|commence|begin|start|submit|complete|report|release|present|publish|open|close|deliver|produce)|'
+    r'PDUFA|top[- ]?line|readout|commercial\s+launch|'
+    r'20\d{2}\s*Q[1-4]|Q[1-4]\s*20\d{2}|H[12]\s*20\d{2}|20\d{2}\s*H[12]|'
+    r'(?:first|second|third|fourth)\s+quarter\s+(?:of\s+)?20\d{2}|'
+    r'(?:first|second)\s+half\s+(?:of\s+)?20\d{2}|'
+    r'(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+(?:\d{1,2}(?:st|nd|rd|th)?[,]?\s+)?20\d{2}|'
+    r'by\s+(?:year[- ]?end|the\s+end\s+of)\s+20\d{2}|later\s+this\s+year|next\s+(?:quarter|year))', re.I)
 EVENT_RE = re.compile(
-    r'(clinical|phase\s*[123]|FDA|approval|PDUFA|NDA|BLA|contract|agreement|order|production|launch|capacity|plant|investment|'
-    r'acquisition|merger|earnings|guidance|commercialization|trial|data|results?)', re.I)
+    r'(clinical|trial|phase\s*[123]|FDA|EMA|PDUFA|NDA|BLA|approval|regulatory|submission|application|'
+    r'top[- ]?line|readout|data|results?|contract|agreement|order|customer|production|manufactur|launch|capacity|'
+    r'plant|facility|investment|acquisition|merger|transaction|closing|earnings|revenue|guidance|commercializ|'
+    r'investor\s+day|conference|presentation)', re.I)
+PAST_ONLY_RE = re.compile(
+    r'\b(?:was|were|has been|have been)\s+(?:completed|launched|submitted|approved|announced|reported|released|closed)\b', re.I)
 
 
 def get_text(url, retries=2, timeout=18):
@@ -110,6 +121,54 @@ def filing_index_url(row):
     return f"https://www.sec.gov/Archives/edgar/data/{int(row['cik'])}/{nodash}/{accession}-index.htm", accession, nodash
 
 
+def abs_doc_url(href, row, nodash):
+    h=(href or '').strip()
+    if not h: return ''
+    if h.startswith('/'): return 'https://www.sec.gov'+h
+    if h.startswith('http'): return h
+    return f"https://www.sec.gov/Archives/edgar/data/{int(row['cik'])}/{nodash}/"+h.split('/')[-1]
+
+
+def parse_document_table(raw, row, nodash):
+    """Parse SEC filing index 'Document Format Files' rows.
+    SEC index pages expose Seq / Description / Document / Type / Size. We keep the actual 8-K/6-K and EX-99.x docs.
+    """
+    docs=[]
+    for tr in re.findall(r'<tr[^>]*>([\s\S]*?)</tr>', raw, re.I):
+        cells=re.findall(r'<td[^>]*>([\s\S]*?)</td>', tr, re.I)
+        if len(cells)<4: continue
+        vals=[strip_html(c) for c in cells]
+        hrefm=re.search(r'href=["\']([^"\']+)["\']', cells[2], re.I)
+        if not hrefm: continue
+        typ=(vals[3] or '').upper().strip()
+        desc=(vals[1] or '').upper().strip()
+        url=abs_doc_url(hrefm.group(1), row, nodash)
+        if not url: continue
+        docs.append({'type':typ,'desc':desc,'url':url})
+    return docs
+
+
+def choose_docs(row, items, docs):
+    """Choose documents that are most likely to contain catalyst language.
+    Important fix: an 8-K primary document often only says the press release is furnished as EX-99.1.
+    We therefore fetch EX-99.1 as well as the primary form document.
+    """
+    form_base='8-K' if row['form'].startswith('8-K') else '6-K'
+    primary=[d for d in docs if d['type']==form_base]
+    ex991=[d for d in docs if re.match(r'EX-99(?:\.1|\.01)?$', d['type']) or 'EX-99.1' in d['desc']]
+    ex99other=[d for d in docs if d['type'].startswith('EX-99') and d not in ex991]
+
+    # Press releases/presentations are especially important for results, Reg FD, other events, and foreign issuers.
+    prefer_exhibit = row['form'].startswith('6-K') or bool(set(items) & {'2.02','7.01','8.01'})
+    ordered=(ex991+primary+ex99other) if prefer_exhibit else (primary+ex991+ex99other)
+    seen=set(); out=[]
+    for d in ordered:
+        if d['url'] in seen: continue
+        seen.add(d['url']); out.append(d['url'])
+        if len(out)>=3: break
+    return out
+
+
 def parse_index(row):
     index_url, accession, nodash = filing_index_url(row)
     raw = get_text(index_url, 2, 15)
@@ -118,33 +177,44 @@ def parse_index(row):
     for x in re.findall(r'Item\s+(1\.01|1\.02|2\.01|2\.02|3\.01|3\.02|7\.01|8\.01)', text, re.I):
         if x not in items: items.append(x)
 
-    # Prefer the primary 8-K/6-K doc; for 6-K, EX-99.1 is often where catalyst details live.
-    hrefs = re.findall(r'href=["\']([^"\']+)["\']', raw, re.I)
-    docs=[]
-    for h in hrefs:
-        if not h.lower().endswith(('.htm','.html','.txt')): continue
-        if h.startswith('/'): full='https://www.sec.gov'+h
-        elif h.startswith('http'): full=h
-        else: full=f"https://www.sec.gov/Archives/edgar/data/{int(row['cik'])}/{nodash}/"+h.split('/')[-1]
-        docs.append(full)
-    # dedupe preserving order
-    docs=list(dict.fromkeys(docs))
-    if row['form'].startswith('8-K'):
-        priority=[u for u in docs if re.search(r'8k|8-k',u,re.I)]
-    else:
-        priority=[u for u in docs if re.search(r'ex99|99-?1|6k|6-k',u,re.I)]
-    return index_url, accession, items, (priority or docs)[:2]
+    docs=parse_document_table(raw,row,nodash)
+    doc_urls=choose_docs(row,items,docs)
+
+    # Fallback for unusual index markup.
+    if not doc_urls:
+        hrefs = re.findall(r'href=["\']([^"\']+)["\']', raw, re.I)
+        fallback=[]
+        for h in hrefs:
+            if not h.lower().endswith(('.htm','.html','.txt')): continue
+            u=abs_doc_url(h,row,nodash)
+            if u and ('-index' not in u.lower()) and ('-headers' not in u.lower()): fallback.append(u)
+        doc_urls=list(dict.fromkeys(fallback))[:3]
+    return index_url, accession, items, doc_urls
+
+
+def sentence_list(text):
+    # SEC HTML flattening can remove line breaks. Split on normal punctuation and common bullet separators.
+    text=re.sub(r'\s+',' ',text).strip()
+    parts=re.split(r'(?<=[.!?])\s+|\s*[•▪◦]\s*|\s{2,}', text)
+    return [p.strip() for p in parts if 20 <= len(p.strip()) <= 2200]
 
 
 def schedule_snippets(text):
-    chunks=re.split(r'(?<=[.!?])\s+|\n+', text)
+    sents=sentence_list(text)
     out=[]
-    for c in chunks:
-        c=re.sub(r'\s+',' ',c).strip()
-        if len(c)<30 or len(c)>1800: continue
-        if FUTURE_RE.search(c) and EVENT_RE.search(c):
-            out.append(c[:1600])
-            if len(out)>=6: break
+    for i,s in enumerate(sents):
+        # Use a 3-sentence window so date/plan and event can be adjacent instead of identical sentence.
+        lo=max(0,i-1); hi=min(len(sents),i+2)
+        window=' '.join(sents[lo:hi])
+        if not FUTURE_RE.search(window): continue
+        if not EVENT_RE.search(window): continue
+        # Don't keep a window that only describes a completed past event unless another future marker is present.
+        if PAST_ONLY_RE.search(s) and not FUTURE_RE.search(s):
+            continue
+        cleaned=re.sub(r'\s+',' ',window).strip()
+        if cleaned and cleaned not in out:
+            out.append(cleaned[:1800])
+        if len(out)>=6: break
     return out
 
 
@@ -157,7 +227,7 @@ def enrich(row,cmap,counters,start_ts):
     except Exception:
         return None
 
-    # 8-K: skip low-priority Items before downloading the actual filing document.
+    # 8-K: skip low-priority Items before downloading actual filing documents.
     if row['form'].startswith('8-K') and not (set(items) & PRIORITY_ITEMS):
         return None
     if not doc_urls: return None
@@ -170,8 +240,11 @@ def enrich(row,cmap,counters,start_ts):
         try: raw=get_text(u,1,15)
         except Exception: continue
         text=strip_html(raw)
-        snips.extend(schedule_snippets(text))
-        if snips: break
+        found=schedule_snippets(text)
+        if found:
+            snips.extend(found)
+            # Keep checking up to one more doc when available, because the primary filing and EX-99.1 can contain complementary dates.
+            if len(snips)>=4: break
     if not snips: return None
 
     return {
@@ -182,12 +255,12 @@ def enrich(row,cmap,counters,start_ts):
 
 
 def main():
-    start_ts=time.time(); now=datetime.now(timezone.utc); start=now-timedelta(days=90)
+    start_ts=time.time(); now=datetime.now(timezone.utc)
     print('step 1/4: load listed company map', flush=True)
     cmap=company_map(); time.sleep(.4)
 
     print('step 2/4: scan SEC daily indexes (90 days)', flush=True)
-    rows=[]; d=start.date(); scanned_days=0
+    rows=[]; d=(now-timedelta(days=90)).date(); scanned_days=0
     while d<=now.date():
         if d.weekday()<5:
             dayrows=fetch_daily_index(datetime(d.year,d.month,d.day))
@@ -217,7 +290,7 @@ def main():
             except Exception:
                 pass
             if processed%25==0:
-                print(f'  processed {processed}/{len(selected)}; primary docs fetched {counters["docs"]}; catalysts {len(out)}; elapsed {int(time.time()-start_ts)}s', flush=True)
+                print(f'  processed {processed}/{len(selected)}; docs fetched {counters["docs"]}; catalysts {len(out)}; elapsed {int(time.time()-start_ts)}s', flush=True)
             if time.time()-start_ts > TIME_BUDGET_SEC:
                 print('  time budget reached; stopping with partial but usable result', flush=True)
                 break
