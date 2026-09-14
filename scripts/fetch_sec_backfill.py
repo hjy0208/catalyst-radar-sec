@@ -43,6 +43,14 @@ EVENT_RE = re.compile(
     r'investor\s+day|conference|presentation)', re.I)
 PAST_ONLY_RE = re.compile(
     r'\b(?:was|were|has been|have been)\s+(?:completed|launched|submitted|approved|announced|reported|released|closed)\b', re.I)
+LOW_VALUE_RE = re.compile(
+    r'(?:resign|resignation|retir(?:e|ement)|appoint(?:ed|ment)|board\s+of\s+directors|compensat(?:ion|ory)|employment\s+agreement|'
+    r'indenture|senior\s+notes?|convertible\s+notes?|debentures?|redemption|redeem(?:ed|able)?|maturity\s+date|coupon|'
+    r'cash\s+runway|support\s+(?:the\s+company.?s\s+)?operations\s+(?:into|through)|fund\s+(?:its\s+)?operations\s+(?:into|through)|liquidity\s+runway)', re.I)
+HIGH_VALUE_RE = re.compile(
+    r'(clinical|trial|phase\s*[123]|FDA|EMA|PDUFA|NDA|BLA|top[- ]?line|readout|regulatory\s+(?:submission|approval)|'
+    r'contract|customer|order|production|manufactur|commercial\s+launch|capacity|plant|facility|guidance|earnings|revenue|'
+    r'investor\s+day|conference|presentation|merger|acquisition|closing)', re.I)
 
 
 def get_text(url, retries=2, timeout=18):
@@ -72,7 +80,7 @@ def common_ticker(ticker, name=''):
     if re.search(r'-(?:P[A-Z]?|PR[A-Z]?|WT|WS|WTS)$', t): return False
     if re.search(r'\.(?:P|PR)[A-Z]?$', t): return False
     if len(t) >= 5 and re.search(r'(?:WW|WZ|WT|WS|W)$', t): return False
-    if re.search(r'(ACQUISITION|BLANK CHECK|SPAC)', c) and t.endswith('U'): return False
+    if re.search(r'\b(?:SPAC|BLANK CHECK)\b|\bACQUISITION\s+(?:CORP(?:ORATION)?|CO(?:MPANY)?|LTD)\b', c): return False
     if re.search(r'\bWARRANTS?\b|\bPREFERRED\b|\bDEPOSITARY SHARE\b|\bUNITS?\b', c): return False
     return True
 
@@ -206,6 +214,7 @@ def schedule_snippets(text):
         # Use a 3-sentence window so date/plan and event can be adjacent instead of identical sentence.
         lo=max(0,i-1); hi=min(len(sents),i+2)
         window=' '.join(sents[lo:hi])
+        if LOW_VALUE_RE.search(window) and not HIGH_VALUE_RE.search(window): continue
         if not FUTURE_RE.search(window): continue
         if not EVENT_RE.search(window): continue
         # Don't keep a window that only describes a completed past event unless another future marker is present.
