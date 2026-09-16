@@ -3,8 +3,9 @@ import json, os, re, time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urljoin
 import xml.etree.ElementTree as ET
+from html import unescape
 
 IDENTITY = os.environ.get('SEC_USER_AGENT', '').strip()
 if not IDENTITY:
@@ -83,6 +84,78 @@ def parse_atom(xml_text, fallback_form):
         })
     return rows
 
+
+def strip_html(text):
+    text = re.sub(r'(?is)<script.*?</script>|<style.*?</style>', ' ', text or '')
+    text = re.sub(r'(?i)<br\\s*/?>|</p>|</div>|</li>|</tr>|</h[1-6]>', '\\n', text)
+    text = re.sub(r'(?s)<[^>]+>', ' ', text)
+    text = unescape(text)
+    return re.sub(r'[ \\t]+', ' ', text).replace('\\r','').strip()
+
+KEY_RE = re.compile(r'(revenue|net income|operating income|earnings per share|EPS|guidance|contract|agreement|acquisition|merger|purchase price|consideration|order|customer|clinical|phase\\s*[123]|FDA|approval|trial|capacity|production|launch|expects?|forecast|outlook|\\$\\s?\\d|\\d+(?:\\.\\d+)?%)', re.I)
+NOISE_RE = re.compile(r'(forward-looking statements|financial statements and exhibits|regulation fd disclosure|table of contents|signature)', re.I)
+
+def meaningful_sentences(text, limit=3):
+    plain = strip_html(text)
+    parts = re.split(r'(?<=[.!?])\\s+|\\n+', plain)
+    ranked=[]
+    for sent in parts:
+        sent=re.sub(r'\\s+',' ',sent).strip()
+        if len(sent)<35 or len(sent)>650 or NOISE_RE.search(sent):
+            continue
+        score=0
+        if KEY_RE.search(sent): score += 5
+        if re.search(r'[\\$€£]|\\b\\d+(?:\\.\\d+)?%|\\b\\d+(?:\\.\\d+)?\\s*(?:million|billion|m|bn)\\b',sent,re.I): score += 6
+        if re.search(r'expects?|will |planned|scheduled|guidance|forecast|target',sent,re.I): score += 2
+        if score:
+            ranked.append((score,sent))
+    ranked.sort(key=lambda x:(-x[0], len(x[1])))
+    out=[]
+    for _,sent in ranked:
+        if any(sent[:90].lower()==x[:90].lower() for x in out): continue
+        out.append(sent)
+        if len(out)>=limit: break
+    return out
+
+def filing_documents(index_url):
+    try:
+        html=get_text(index_url,retries=2)
+    except Exception:
+        return []
+    rows=re.findall(r'(?is)<tr[^>]*>(.*?)</tr>',html)
+    primary=[]; exhibits=[]
+    for row in rows:
+        rowtxt=re.sub(r'\\s+',' ',strip_html(row))
+        links=re.findall(r'(?i)href=["\\\']([^"\\\']+)["\\\']',row)
+        if not links: continue
+        href=links[0]
+        if not re.search(r'\\.(?:htm|html|txt)(?:$|\\?)',href,re.I): continue
+        full=urljoin(index_url,href)
+        if re.search(r'EX-99(?:\\.1)?|PRESS RELEASE|EARNINGS RELEASE',rowtxt,re.I): exhibits.append(full)
+        elif re.search(r'\\b(?:8-K|6-K)\\b',rowtxt,re.I) and not re.search(r'XBRL|XML|GRAPHIC',rowtxt,re.I): primary.append(full)
+    docs=[]
+    for u in primary[:1]+exhibits[:1]:
+        if u not in docs: docs.append(u)
+    return docs
+
+def enrich_filing(row):
+    docs=filing_documents(row.get('url',''))
+    chunks=[]
+    for u in docs:
+        try:
+            chunks.append(get_text(u,retries=2))
+            time.sleep(0.18)
+        except Exception:
+            continue
+    if not chunks:
+        return row
+    keys=meaningful_sentences(' '.join(chunks),3)
+    if keys:
+        row['key_sentences']=keys
+        row['body_excerpt']=' '.join(keys)[:1800]
+    return row
+
+
 def main():
     cmap = company_map()
     time.sleep(0.5)
@@ -104,6 +177,17 @@ def main():
         if key in seen: continue
         seen.add(key)
         out.append({**r, 'company': m['name'] or r['company'], 'ticker': m['ticker'], 'exchange': m['exchange']})
+
+    # Apps Script가 실제로 사용하는 고우선 8-K/6-K만 원문/EX-99.1에서 핵심문장을 보강합니다.
+    enriched=0
+    for r in out:
+        if enriched>=36: break
+        items=(r.get('items') or '')
+        if r.get('form','').upper().startswith('8-K') and not re.search(r'Item\s+(?:1\.01|1\.02|2\.01|2\.02|3\.01|3\.02|7\.01|8\.01)',items,re.I):
+            continue
+        enrich_filing(r); enriched += 1
+        time.sleep(0.18)
+    print(f'enriched {enriched} filings with primary/EX-99.1 text')
 
     payload = {
         'generated_at': datetime.now(timezone.utc).isoformat(),
