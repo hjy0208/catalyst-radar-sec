@@ -202,39 +202,37 @@ def filing_documents(index_url, item=''):
         links = re.findall(r'(?i)href=["\']([^"\']+)["\']', row)
         if not links:
             continue
-        # SEC index rows may contain more than one link. Prefer the actual document link.
         href = next((x for x in links if re.search(r'\.(?:htm|html|txt)(?:$|\?)', x, re.I)), links[0])
         if not re.search(r'\.(?:htm|html|txt)(?:$|\?)', href, re.I):
             continue
         full = urljoin(index_url, href)
         if re.search(r'\bEX-99\.1\b|EARNINGS RELEASE|PRESS RELEASE', rowtxt, re.I):
-            ex991.append(full)
+            ex991.append({'url': full, 'kind': 'EX-99.1'})
         elif re.search(r'\bEX-99(?:\.|\b)', rowtxt, re.I):
-            other99.append(full)
+            other99.append({'url': full, 'kind': 'EX-99'})
         elif re.search(r'\bEX-10(?:\.1|\.2|\b)', rowtxt, re.I):
-            ex10.append(full)
+            ex10.append({'url': full, 'kind': 'EX-10'})
         elif re.search(r'\bEX-2(?:\.1|\b)', rowtxt, re.I):
-            ex2.append(full)
+            ex2.append({'url': full, 'kind': 'EX-2'})
         elif re.search(r'\b(?:8-K|6-K)\b', rowtxt, re.I) and not re.search(r'XBRL|XML|GRAPHIC', rowtxt, re.I):
-            primary.append(full)
+            primary.append({'url': full, 'kind': 'primary'})
 
-    # Different 8-K items hide the useful details in different documents.
-    # Keep the request count small but include the exhibit most likely to contain investor-relevant facts.
+    # v0.2.17: 현재 공시 본문/보도자료를 우선하고 계약서 전문은 보조 자료로만 사용합니다.
     if item == '1.01':
-        candidates = ex991[:1] + primary[:1] + ex10[:1]
+        candidates = primary[:1] + ex991[:1] + ex10[:1]
     elif item == '2.01':
-        candidates = ex991[:1] + primary[:1] + ex2[:1]
+        candidates = primary[:1] + ex991[:1] + ex2[:1]
     elif item == '2.02':
         candidates = ex991[:1] + primary[:1] + other99[:1]
     elif item in {'3.01', '3.02', '1.02'}:
         candidates = primary[:1] + ex991[:1] + other99[:1]
     else:
-        candidates = ex991[:1] + primary[:1] + other99[:1]
+        candidates = primary[:1] + ex991[:1] + other99[:1]
 
-    docs = []
-    for u in candidates:
-        if u not in docs:
-            docs.append(u)
+    docs, seen = [], set()
+    for d in candidates:
+        if d['url'] not in seen:
+            docs.append(d); seen.add(d['url'])
     return docs[:3]
 
 
@@ -285,6 +283,88 @@ HISTORICAL_CONTEXT_RE = re.compile(
     r'\b(?:originally entered|previously entered|dated as of|as amended from time to time|since\s+20\d{2}|'
     r'for the year ended|for the quarter ended|prior agreement|existing agreement|201[0-9])\b', re.I
 )
+
+
+LEGAL_DEEP_RE = re.compile(
+    r'\bWHEREAS\b|\bWITNESSETH\b|\bNOW, THEREFORE\b|\bhereby\b|\bherein\b|\bhereof\b|\bhereto\b|\bthereof\b|'
+    r'\bshall mean\b|\bsubject to the terms and conditions\b|\bfor good and valuable consideration\b|'
+    r'\bSection\s+\d+(?:\.\d+)+\b|\bArticle\s+[IVXLC]+\b|\bdefined terms?\b|\bthe parties hereto\b', re.I
+)
+
+def source_priority(kind, item):
+    if kind == 'primary': return 18
+    if kind == 'EX-99.1': return 16
+    if kind == 'EX-99': return 11
+    if kind == 'EX-2': return 11 if item == '2.01' else 5
+    if kind == 'EX-10': return 10 if item in {'1.01','1.02'} else 4
+    return 0
+
+def _clean_summary_sentence(sent):
+    s = re.sub(r'\s+', ' ', sent or '').strip(' \t-•|')
+    s = re.sub(r'^(?:Exhibit|EX-)\s*\d+(?:\.\d+)?\s*[:\-]?\s*', '', s, flags=re.I)
+    if len(s) > 560:
+        cut = max(s.rfind('. ', 0, 560), s.rfind('; ', 0, 560))
+        s = (s[:cut+1] if cut > 180 else s[:557] + '...').strip()
+    return s
+
+def build_structured_summary(doc_chunks, item, filing_date=None):
+    """Return one current-event sentence + one concrete condition sentence."""
+    event_candidates, detail_candidates = [], []
+    term_re = ITEM_DETAIL_RE.get(item)
+    for kind, text in doc_chunks:
+        sp = source_priority(kind, item)
+        for sent in split_sentences(text):
+            sent = _clean_summary_sentence(sent)
+            if not sent or NOISE_RE.search(sent) or ITEM_BOILERPLATE_RE.search(sent):
+                continue
+            legal = bool(LEGAL_DEEP_RE.search(sent))
+            if legal and kind in {'EX-10','EX-2'}:
+                # 계약서 전문에서 boilerplate는 거의 항상 현재 투자 포인트가 아닙니다.
+                continue
+            base = detail_score(sent, item, filing_date) + sp
+            if stale_sentence(sent, filing_date):
+                continue
+            has_term = bool(term_re and term_re.search(sent))
+            has_action = bool(CURRENT_ACTION_RE.search(sent))
+            has_concrete = bool(MONEY_DETAIL_RE.search(sent) or DATE_DETAIL_RE.search(sent) or DURATION_RE.search(sent))
+            has_future = bool(FUTURE_RE.search(sent))
+            # Event sentence: current action or clearly item-relevant statement from primary/press release.
+            ev = base + (14 if has_action else 0) + (8 if has_term else 0) + (3 if has_future else 0)
+            if kind in {'primary','EX-99.1'} and (has_action or has_term): ev += 8
+            if kind in {'EX-10','EX-2'} and not has_action: ev -= 10
+            if ev >= 18:
+                event_candidates.append((ev, len(sent), sent, kind))
+            # Detail sentence: concrete amount/date/duration/result; legal exhibits need stronger evidence.
+            dt = base + (15 if has_concrete else 0) + (5 if has_term else 0)
+            if kind in {'primary','EX-99.1'}: dt += 5
+            if kind in {'EX-10','EX-2'} and not has_concrete: dt -= 18
+            if has_concrete and dt >= 20:
+                detail_candidates.append((dt, len(sent), sent, kind))
+
+    event_candidates.sort(key=lambda x: (-x[0], x[1]))
+    detail_candidates.sort(key=lambda x: (-x[0], x[1]))
+    event = event_candidates[0][2] if event_candidates else ''
+    event_kind = event_candidates[0][3] if event_candidates else ''
+    detail, detail_kind = '', ''
+    for _, _, sent, kind in detail_candidates:
+        if event and (sent.lower() in event.lower() or event.lower() in sent.lower()):
+            # If the event itself has the concrete fact, keep it as event and look for another detail.
+            continue
+        detail, detail_kind = sent, kind
+        break
+    if not detail and detail_candidates and not event:
+        detail, detail_kind = detail_candidates[0][2], detail_candidates[0][3]
+    if not event and detail:
+        event = detail; event_kind = detail_kind; detail = ''; detail_kind = ''
+
+    quality = 'high' if event and detail else ('medium' if event else 'low')
+    return {
+        'event': event,
+        'detail': detail,
+        'event_source': event_kind,
+        'detail_source': detail_kind,
+        'quality': quality,
+    }
 
 def _safe_iso_date(value):
     try:
@@ -438,29 +518,33 @@ def enrich_filing(row):
     if not docs:
         row['summary_quality'] = 'low'
         return row
-    chunks, sources = [], []
-    for u in docs:
+    doc_chunks, sources = [], []
+    for d in docs:
         try:
-            chunks.append(get_text(u, retries=2, max_bytes=2500000))
-            if re.search(r'(?:99[._-]?1|exh?99)', u, re.I):
-                sources.append('EX-99.1')
-            elif re.search(r'(?:ex|exhibit)[_\-]?10', u, re.I):
-                sources.append('EX-10')
-            elif re.search(r'(?:ex|exhibit)[_\-]?2', u, re.I):
-                sources.append('EX-2')
-            else:
-                sources.append('primary')
+            txt = get_text(d['url'], retries=2, max_bytes=2500000)
+            doc_chunks.append((d['kind'], txt))
+            sources.append(d['kind'])
             time.sleep(0.14)
         except Exception:
             continue
-    if not chunks:
+    if not doc_chunks:
         row['summary_quality'] = 'low'
         return row
 
-    combined = '\n'.join(chunks)
+    structured = build_structured_summary(doc_chunks, item, row.get('filing_date'))
+    combined = '\n'.join(text for _, text in doc_chunks)
     investor, quality, flags = build_investor_summary(combined, item, row.get('filing_date'), 2)
     broad = pick_summary_sentences(combined, item, 3)
-    if investor:
+
+    # Structured summary is the preferred payload for Apps Script v0.2.17.
+    row['structured_summary'] = structured
+    structured_lines = [structured.get('event',''), structured.get('detail','')]
+    structured_lines = [x for x in structured_lines if x]
+    if structured_lines:
+        row['investor_summary_sentences'] = structured_lines
+        row['body_excerpt'] = ' '.join(structured_lines)[:2600]
+        quality = structured.get('quality', quality)
+    elif investor:
         row['investor_summary_sentences'] = investor
         row['body_excerpt'] = ' '.join(investor)[:2600]
     elif broad:
@@ -469,9 +553,10 @@ def enrich_filing(row):
     row['summary_quality'] = quality
     row['summary_flags'] = flags
     row['summary_source'] = '/'.join(dict.fromkeys(sources))
+    row['summary_documents'] = list(dict.fromkeys(sources))
     row['summary_item'] = item
     row['summary_filing_date'] = row.get('filing_date', '')
-    row['summary_freshness_version'] = '0.2.16'
+    row['summary_freshness_version'] = '0.2.17'
     return row
 
 def main():
@@ -511,12 +596,12 @@ def main():
         enrich_filing(r)
         enriched += 1
         time.sleep(0.16)
-    print(f'enriched {enriched} filings with investor-focused SEC detail extraction')
+    print(f'enriched {enriched} filings with document-priority structured SEC summary extraction')
 
     payload = {
         'generated_at': datetime.now(timezone.utc).isoformat(),
         'source': 'SEC EDGAR latest 8-K/6-K via GitHub Actions',
-        'collector_version': '0.2.16',
+        'collector_version': '0.2.17',
         'excluded': excluded,
         'events': out[:150],
     }
