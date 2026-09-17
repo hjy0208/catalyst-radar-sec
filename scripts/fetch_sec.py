@@ -13,23 +13,24 @@ if not IDENTITY:
 
 HEADERS = {
     'User-Agent': IDENTITY,
-    'Accept': 'application/atom+xml,application/json,text/plain,*/*',
+    'Accept': 'application/atom+xml,application/json,text/html,text/plain,*/*',
     'Accept-Encoding': 'identity',
 }
-
 ALLOWED = {'NASDAQ', 'NYSE', 'NYSE AMERICAN'}
 
-def get_text(url, retries=3):
+
+def get_text(url, retries=3, timeout=30):
     last = None
     for i in range(retries):
         try:
             req = Request(url, headers=HEADERS)
-            with urlopen(req, timeout=30) as r:
+            with urlopen(req, timeout=timeout) as r:
                 return r.read().decode('utf-8', errors='replace')
         except Exception as e:
             last = e
-            time.sleep(1.5 * (i + 1))
+            time.sleep(1.2 * (i + 1))
     raise last
+
 
 def normalize_exchange(x):
     s = (x or '').upper().strip()
@@ -41,10 +42,11 @@ def normalize_exchange(x):
         return 'NYSE AMERICAN'
     return s
 
+
 def company_map():
     raw = json.loads(get_text('https://www.sec.gov/files/company_tickers_exchange.json'))
     fields = raw['fields']
-    pos = {name: fields.index(name) for name in ['cik','name','ticker','exchange']}
+    pos = {name: fields.index(name) for name in ['cik', 'name', 'ticker', 'exchange']}
     out = {}
     for row in raw['data']:
         cik = str(int(row[pos['cik']]))
@@ -54,6 +56,7 @@ def company_map():
             'exchange': normalize_exchange(row[pos['exchange']]),
         }
     return out
+
 
 def parse_atom(xml_text, fallback_form):
     root = ET.fromstring(xml_text)
@@ -65,7 +68,7 @@ def parse_atom(xml_text, fallback_form):
         summary = (e.findtext('a:summary', default='', namespaces=ns) or '').strip()
         ident = (e.findtext('a:id', default='', namespaces=ns) or '').strip()
         link_el = e.find('a:link', ns)
-        url = link_el.attrib.get('href','') if link_el is not None else ''
+        url = link_el.attrib.get('href', '') if link_el is not None else ''
         cikm = re.search(r'\((\d{6,10})\)\s*\((?:Filer|Reporting)\)', title, re.I) or re.search(r'\((\d{6,10})\)', title)
         if not cikm:
             continue
@@ -74,12 +77,12 @@ def parse_atom(xml_text, fallback_form):
         company = re.sub(r'^.*?\s+-\s+', '', title)
         company = re.sub(r'\s*\(\d{6,10}\).*$', '', company).strip()
         am = re.search(r'accession-number=([0-9-]+)', ident, re.I)
-        items = ''
-        im = re.search(r'Items?[^<]*', summary, re.I)
-        if im: items = im.group(0)
+        clean_summary = re.sub(r'<[^>]+>', ' ', summary)
+        clean_summary = re.sub(r'\s+', ' ', clean_summary).strip()
+        items = ' '.join(re.findall(r'Item\s+\d+\.\d+:[^\n\r<]+', unescape(summary), re.I))
         rows.append({
             'cik': str(int(cikm.group(1))), 'company': company, 'form': form,
-            'filing_date': updated[:10], 'title': title, 'summary': re.sub('<[^>]+>',' ',summary),
+            'filing_date': updated[:10], 'title': title, 'summary': clean_summary,
             'items': items, 'url': url, 'accession': am.group(1) if am else ident,
         })
     return rows
@@ -87,84 +90,169 @@ def parse_atom(xml_text, fallback_form):
 
 def strip_html(text):
     text = re.sub(r'(?is)<script.*?</script>|<style.*?</style>', ' ', text or '')
-    text = re.sub(r'(?i)<br\\s*/?>|</p>|</div>|</li>|</tr>|</h[1-6]>', '\\n', text)
+    text = re.sub(r'(?i)<br\s*/?>|</p>|</div>|</li>|</tr>|</h[1-6]>', '\n', text)
     text = re.sub(r'(?s)<[^>]+>', ' ', text)
     text = unescape(text)
-    return re.sub(r'[ \\t]+', ' ', text).replace('\\r','').strip()
+    text = text.replace('\xa0', ' ').replace('\r', '')
+    text = re.sub(r'[ \t]+', ' ', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
 
-KEY_RE = re.compile(r'(revenue|net income|operating income|earnings per share|EPS|guidance|contract|agreement|acquisition|merger|purchase price|consideration|order|customer|clinical|phase\\s*[123]|FDA|approval|trial|capacity|production|launch|expects?|forecast|outlook|\\$\\s?\\d|\\d+(?:\\.\\d+)?%)', re.I)
-NOISE_RE = re.compile(r'(forward-looking statements|financial statements and exhibits|regulation fd disclosure|table of contents|signature)', re.I)
 
-def meaningful_sentences(text, limit=3):
+def split_sentences(text):
     plain = strip_html(text)
-    parts = re.split(r'(?<=[.!?])\\s+|\\n+', plain)
-    ranked=[]
-    for sent in parts:
-        sent=re.sub(r'\\s+',' ',sent).strip()
-        if len(sent)<35 or len(sent)>650 or NOISE_RE.search(sent):
-            continue
-        score=0
-        if KEY_RE.search(sent): score += 5
-        if re.search(r'[\\$€£]|\\b\\d+(?:\\.\\d+)?%|\\b\\d+(?:\\.\\d+)?\\s*(?:million|billion|m|bn)\\b',sent,re.I): score += 6
-        if re.search(r'expects?|will |planned|scheduled|guidance|forecast|target',sent,re.I): score += 2
-        if score:
-            ranked.append((score,sent))
-    ranked.sort(key=lambda x:(-x[0], len(x[1])))
-    out=[]
-    for _,sent in ranked:
-        if any(sent[:90].lower()==x[:90].lower() for x in out): continue
-        out.append(sent)
-        if len(out)>=limit: break
+    raw = re.split(r'(?<=[.!?])\s+|\n+', plain)
+    out = []
+    for s in raw:
+        s = re.sub(r'\s+', ' ', s).strip(' \t-•|')
+        if 30 <= len(s) <= 900:
+            out.append(s)
     return out
+
+
+NOISE_RE = re.compile(
+    r'forward-looking statements|safe harbor|financial statements and exhibits|regulation fd disclosure|'
+    r'table of contents|pursuant to the requirements|signature|commission file number|'
+    r'not be deemed .* filed|incorporated by reference|exhibit index|press release furnished as exhibit',
+    re.I
+)
+QUANT_RE = re.compile(
+    r'[\$€£¥]|\b\d+(?:\.\d+)?%|\b\d+(?:\.\d+)?\s*(?:million|billion|thousand|m|bn)\b|'
+    r'\bEPS\b|earnings per share|revenue|net income|operating income|adjusted EBITDA|free cash flow',
+    re.I
+)
+FUTURE_RE = re.compile(
+    r'expects?|anticipates?|plans?|planned|intends?|targets?|scheduled|guidance|forecast|outlook|'
+    r'will\s+(?:launch|submit|complete|close|begin|commence|report|release|present|provide|increase|decrease)',
+    re.I
+)
+
+ITEM_TERMS = {
+    '1.01': re.compile(r'entered into|agreement|contract|purchase order|supply|customer|credit facility|loan|term|consideration|commitment', re.I),
+    '1.02': re.compile(r'terminat|cancel|expire|expiration|ended|cease|effective|fee|penalty', re.I),
+    '2.01': re.compile(r'acquisition|acquired|disposition|disposed|sale of|sold|purchase price|consideration|cash|shares|completed', re.I),
+    '2.02': re.compile(r'revenue|sales|net income|operating income|EPS|earnings per share|EBITDA|margin|guidance|outlook|quarter|fiscal year', re.I),
+    '3.01': re.compile(r'Nasdaq|NYSE|listing|delisting|deficien|compliance|bid price|cure|deadline|hearing', re.I),
+    '3.02': re.compile(r'issued|sold|shares|warrant|convertible|purchase price|offering|proceeds|private placement|securities', re.I),
+    '7.01': re.compile(r'guidance|clinical|FDA|approval|contract|agreement|acquisition|production|capacity|launch|results', re.I),
+    '8.01': re.compile(r'clinical|FDA|approval|contract|agreement|acquisition|production|capacity|launch|results|guidance', re.I),
+    '6-K': re.compile(r'clinical|FDA|approval|contract|agreement|acquisition|production|capacity|launch|results|guidance|revenue|EPS', re.I),
+}
+
+
+def primary_item(items, form):
+    m = re.search(r'Item\s+(1\.01|1\.02|2\.01|2\.02|3\.01|3\.02|7\.01|8\.01)', items or '', re.I)
+    if m:
+        return m.group(1)
+    if str(form).upper().startswith('6-K'):
+        return '6-K'
+    return ''
+
+
+def sentence_score(sent, item):
+    if NOISE_RE.search(sent):
+        return -100
+    score = 0
+    term_re = ITEM_TERMS.get(item)
+    if term_re and term_re.search(sent):
+        score += 8
+    if QUANT_RE.search(sent):
+        score += 8
+    if FUTURE_RE.search(sent):
+        score += 3
+    if re.search(r'\b(?:202[0-9]|203[0-9])\b|\bQ[1-4]\b|first quarter|second quarter|third quarter|fourth quarter', sent, re.I):
+        score += 2
+    if re.search(r'Item\s+\d+\.\d+|Form\s+8-K|Form\s+6-K|Accession|Filed:', sent, re.I):
+        score -= 7
+    # 아주 긴 법률 문구는 의미 밀도가 낮습니다.
+    if len(sent) > 600:
+        score -= 3
+    return score
+
+
+def pick_summary_sentences(text, item, limit=3):
+    ranked = []
+    for sent in split_sentences(text):
+        sc = sentence_score(sent, item)
+        if sc < 5:
+            continue
+        ranked.append((sc, sent))
+    ranked.sort(key=lambda x: (-x[0], len(x[1])))
+    out = []
+    for _, sent in ranked:
+        normalized = re.sub(r'[^a-z0-9]+', ' ', sent.lower())[:140]
+        if any(normalized == re.sub(r'[^a-z0-9]+', ' ', x.lower())[:140] for x in out):
+            continue
+        out.append(sent)
+        if len(out) >= limit:
+            break
+    return out
+
 
 def filing_documents(index_url):
     try:
-        html=get_text(index_url,retries=2)
+        html = get_text(index_url, retries=2)
     except Exception:
         return []
-    rows=re.findall(r'(?is)<tr[^>]*>(.*?)</tr>',html)
-    primary=[]; exhibits=[]
+    rows = re.findall(r'(?is)<tr[^>]*>(.*?)</tr>', html)
+    primary, ex991, other99 = [], [], []
     for row in rows:
-        rowtxt=re.sub(r'\\s+',' ',strip_html(row))
-        links=re.findall(r'(?i)href=["\\\']([^"\\\']+)["\\\']',row)
-        if not links: continue
-        href=links[0]
-        if not re.search(r'\\.(?:htm|html|txt)(?:$|\\?)',href,re.I): continue
-        full=urljoin(index_url,href)
-        if re.search(r'EX-99(?:\\.1)?|PRESS RELEASE|EARNINGS RELEASE',rowtxt,re.I): exhibits.append(full)
-        elif re.search(r'\\b(?:8-K|6-K)\\b',rowtxt,re.I) and not re.search(r'XBRL|XML|GRAPHIC',rowtxt,re.I): primary.append(full)
-    docs=[]
-    for u in primary[:1]+exhibits[:1]:
-        if u not in docs: docs.append(u)
+        rowtxt = re.sub(r'\s+', ' ', strip_html(row))
+        links = re.findall(r'(?i)href=["\']([^"\']+)["\']', row)
+        if not links:
+            continue
+        href = links[0]
+        if not re.search(r'\.(?:htm|html|txt)(?:$|\?)', href, re.I):
+            continue
+        full = urljoin(index_url, href)
+        if re.search(r'\bEX-99\.1\b|EARNINGS RELEASE|PRESS RELEASE', rowtxt, re.I):
+            ex991.append(full)
+        elif re.search(r'\bEX-99(?:\.|\b)', rowtxt, re.I):
+            other99.append(full)
+        elif re.search(r'\b(?:8-K|6-K)\b', rowtxt, re.I) and not re.search(r'XBRL|XML|GRAPHIC', rowtxt, re.I):
+            primary.append(full)
+    docs = []
+    # 숫자/계획/보도자료는 EX-99.1에 가장 자주 있으므로 우선 읽고, 본문으로 보완합니다.
+    for u in ex991[:1] + primary[:1] + other99[:1]:
+        if u not in docs:
+            docs.append(u)
     return docs
 
+
 def enrich_filing(row):
-    docs=filing_documents(row.get('url',''))
-    chunks=[]
+    docs = filing_documents(row.get('url', ''))
+    if not docs:
+        return row
+    item = primary_item(row.get('items', ''), row.get('form', ''))
+    chunks, sources = [], []
     for u in docs:
         try:
-            chunks.append(get_text(u,retries=2))
-            time.sleep(0.18)
+            chunks.append(get_text(u, retries=2))
+            sources.append('EX-99.1' if re.search(r'(?:99[._-]?1|exh?99)', u, re.I) else 'primary')
+            time.sleep(0.16)
         except Exception:
             continue
     if not chunks:
         return row
-    keys=meaningful_sentences(' '.join(chunks),3)
+    combined = '\n'.join(chunks)
+    keys = pick_summary_sentences(combined, item, 3)
     if keys:
-        row['key_sentences']=keys
-        row['body_excerpt']=' '.join(keys)[:1800]
+        row['key_sentences'] = keys
+        row['body_excerpt'] = ' '.join(keys)[:2400]
+        row['summary_source'] = 'EX-99.1/primary'
+        row['summary_item'] = item
     return row
 
 
 def main():
     cmap = company_map()
-    time.sleep(0.5)
+    time.sleep(0.4)
     entries = []
-    for form in ('8-K','6-K'):
-        q = urlencode({'action':'getcurrent','type':form,'dateb':'','owner':'include','count':'100','output':'atom'})
+    for form in ('8-K', '6-K'):
+        q = urlencode({'action': 'getcurrent', 'type': form, 'dateb': '', 'owner': 'include', 'count': '100', 'output': 'atom'})
         xml = get_text('https://www.sec.gov/cgi-bin/browse-edgar?' + q)
         entries.extend(parse_atom(xml, form))
-        time.sleep(0.75)
+        time.sleep(0.6)
 
     out, excluded = [], 0
     seen = set()
@@ -174,24 +262,31 @@ def main():
             excluded += 1
             continue
         key = r['accession'] or r['url']
-        if key in seen: continue
+        if key in seen:
+            continue
         seen.add(key)
         out.append({**r, 'company': m['name'] or r['company'], 'ticker': m['ticker'], 'exchange': m['exchange']})
 
-    # Apps Script가 실제로 사용하는 고우선 8-K/6-K만 원문/EX-99.1에서 핵심문장을 보강합니다.
-    enriched=0
+    # Apps Script가 실제 Today Radar에 쓰는 고우선 공시만 본문/EX-99.1을 보강합니다.
+    enriched = 0
     for r in out:
-        if enriched>=36: break
-        items=(r.get('items') or '')
-        if r.get('form','').upper().startswith('8-K') and not re.search(r'Item\s+(?:1\.01|1\.02|2\.01|2\.02|3\.01|3\.02|7\.01|8\.01)',items,re.I):
+        if enriched >= 42:
+            break
+        item = primary_item(r.get('items', ''), r.get('form', ''))
+        if not item:
             continue
-        enrich_filing(r); enriched += 1
-        time.sleep(0.18)
-    print(f'enriched {enriched} filings with primary/EX-99.1 text')
+        # 8-K 고우선 Item + 6-K만 본문을 조회합니다.
+        if item not in {'1.01', '1.02', '2.01', '2.02', '3.01', '3.02', '7.01', '8.01', '6-K'}:
+            continue
+        enrich_filing(r)
+        enriched += 1
+        time.sleep(0.16)
+    print(f'enriched {enriched} filings with EX-99.1/primary summary text')
 
     payload = {
         'generated_at': datetime.now(timezone.utc).isoformat(),
         'source': 'SEC EDGAR latest 8-K/6-K via GitHub Actions',
+        'collector_version': '0.2.14',
         'excluded': excluded,
         'events': out[:150],
     }
@@ -199,6 +294,7 @@ def main():
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f'wrote {len(out[:150])} events, excluded {excluded}')
+
 
 if __name__ == '__main__':
     main()
