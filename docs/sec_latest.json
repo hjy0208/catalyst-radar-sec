@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-17T07:11:49.410546+00:00",
+  "generated_at": "2026-09-17T07:46:07.017269+00:00",
   "source": "SEC EDGAR latest 8-K/6-K via GitHub Actions",
-  "collector_version": "0.2.16",
+  "collector_version": "0.2.17",
   "excluded": 40,
   "events": [
     {
@@ -16,12 +16,23 @@
       "accession": "0001493152-26-042963",
       "ticker": "ERNAW",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "",
+        "detail": "",
+        "event_source": "",
+        "detail_source": "",
+        "quality": "low"
+      },
       "summary_quality": "low",
       "summary_flags": {},
-      "summary_source": "EX-99.1",
+      "summary_source": "EX-99.1/EX-99",
+      "summary_documents": [
+        "EX-99.1",
+        "EX-99"
+      ],
       "summary_item": "7.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1591890",
@@ -35,11 +46,18 @@
       "accession": "0001493152-26-042957",
       "ticker": "FGNXP",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "financing of each acquisition will depend on the characteristics of the property, prevailing market conditions and the Company’s",
+        "detail": "Nexus Board of Directors Approves Affordable Housing Real Estate Acquisition Strategy and $10 Million Investment in FG Communities",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "NC, September 16, 2026 (GLOBE NEWSWIRE) - FG Nexus (Nasdaq: FGNX, FGNXP) (the “Company”) today announced that its Board of Directors has approved a strategy to acquire affordable housing communities and make a $10 million investment in FG Communities, Inc.",
-        "Nexus Board of Directors Approves Affordable Housing Real Estate Acquisition Strategy and $10 Million Investment in FG Communities plans to change its name to FG Communities Holdings, Inc."
+        "financing of each acquisition will depend on the characteristics of the property, prevailing market conditions and the Company’s",
+        "Nexus Board of Directors Approves Affordable Housing Real Estate Acquisition Strategy and $10 Million Investment in FG Communities"
       ],
-      "body_excerpt": "NC, September 16, 2026 (GLOBE NEWSWIRE) - FG Nexus (Nasdaq: FGNX, FGNXP) (the “Company”) today announced that its Board of Directors has approved a strategy to acquire affordable housing communities and make a $10 million investment in FG Communities, Inc. Nexus Board of Directors Approves Affordable Housing Real Estate Acquisition Strategy and $10 Million Investment in FG Communities plans to change its name to FG Communities Holdings, Inc.",
+      "body_excerpt": "financing of each acquisition will depend on the characteristics of the property, prevailing market conditions and the Company’s Nexus Board of Directors Approves Affordable Housing Real Estate Acquisition Strategy and $10 Million Investment in FG Communities",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -51,9 +69,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "7.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "2093524",
@@ -67,12 +88,19 @@
       "accession": "0001213900-26-100601",
       "ticker": "APURR",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "of attorney with respect to the Subject Stock and (iii) has not entered into any agreement or knowingly taken any action (nor will",
+        "detail": "(this “ Agreement ”) is made as of September 10, 2026 by and among (i) Aperture AC , a Cayman Islands exempted",
+        "event_source": "EX-10",
+        "detail_source": "EX-10",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "This Agreement is intended to create a contractual relationship among the Holder, the Company and SPAC, and is not intended to create, and does not create, any agency, partnership, joint venture or any like relationship among the",
+        "of attorney with respect to the Subject Stock and (iii) has not entered into any agreement or knowingly taken any action (nor will",
         "(this “ Agreement ”) is made as of September 10, 2026 by and among (i) Aperture AC , a Cayman Islands exempted"
       ],
-      "body_excerpt": "This Agreement is intended to create a contractual relationship among the Holder, the Company and SPAC, and is not intended to create, and does not create, any agency, partnership, joint venture or any like relationship among the (this “ Agreement ”) is made as of September 10, 2026 by and among (i) Aperture AC , a Cayman Islands exempted",
-      "summary_quality": "medium",
+      "body_excerpt": "of attorney with respect to the Subject Stock and (iii) has not entered into any agreement or knowingly taken any action (nor will (this “ Agreement ”) is made as of September 10, 2026 by and among (i) Aperture AC , a Cayman Islands exempted",
+      "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": false,
         "has_date": true,
@@ -83,9 +111,12 @@
         "has_current_action": false
       },
       "summary_source": "EX-10",
+      "summary_documents": [
+        "EX-10"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1467760",
@@ -113,11 +144,18 @@
       "accession": "0001213900-26-100596",
       "ticker": "TNONW",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "be $2,872,338.58, excluding any proceeds that may be received upon the exercise of the New Warrants and before deducting financial advisor",
+        "detail": "Aggregate Gross Proceeds of Approximately $2,872,338",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "Aggregate Gross Proceeds of Approximately $2,872,338 LOS GATOS, CA / ACCESS Newswire / September 11, 2026 / Tenon Medical,",
-        "The gross proceeds from the warrant inducement are expected to be $2,872,338.58, excluding any proceeds that may be received upon the exercise of the New Warrants and before deducting financial advisor"
+        "be $2,872,338.58, excluding any proceeds that may be received upon the exercise of the New Warrants and before deducting financial advisor",
+        "Aggregate Gross Proceeds of Approximately $2,872,338"
       ],
-      "body_excerpt": "Aggregate Gross Proceeds of Approximately $2,872,338 LOS GATOS, CA / ACCESS Newswire / September 11, 2026 / Tenon Medical, The gross proceeds from the warrant inducement are expected to be $2,872,338.58, excluding any proceeds that may be received upon the exercise of the New Warrants and before deducting financial advisor",
+      "body_excerpt": "be $2,872,338.58, excluding any proceeds that may be received upon the exercise of the New Warrants and before deducting financial advisor Aggregate Gross Proceeds of Approximately $2,872,338",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -129,9 +167,13 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1/EX-10",
+      "summary_documents": [
+        "EX-99.1",
+        "EX-10"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "2033770",
@@ -145,11 +187,18 @@
       "accession": "0001213900-26-100595",
       "ticker": "DAICW",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "To fund a $15 million standby equity purchase agreement and $3.0 million promissory notes pursuant to a standby equity purchase agreement to be entered into with DAIC",
+        "detail": "The Parties shall negotiate in good faith and use their reasonable best efforts to execute and deliver the Definitive Agreements on or before September 25, 2026.",
+        "event_source": "EX-10",
+        "detail_source": "EX-10",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "senior note (~$1.08M) note cancelled for 2,815,506-shares of DAIC Common retained by LHT; liens released; scheduled non-core assets conveyed in cancellation of Phillips $500,000 note; SEE ID patent retained; closes by September 30, 2026, unconditionally.",
-        "Holder of a $500,000 convertible unsecured note issued by DAIC To fund a $15 million standby equity purchase agreement and $3.0 million promissory notes pursuant to a standby equity purchase agreement to be entered into with DAIC"
+        "To fund a $15 million standby equity purchase agreement and $3.0 million promissory notes pursuant to a standby equity purchase agreement to be entered into with DAIC",
+        "The Parties shall negotiate in good faith and use their reasonable best efforts to execute and deliver the Definitive Agreements on or before September 25, 2026."
       ],
-      "body_excerpt": "senior note (~$1.08M) note cancelled for 2,815,506-shares of DAIC Common retained by LHT; liens released; scheduled non-core assets conveyed in cancellation of Phillips $500,000 note; SEE ID patent retained; closes by September 30, 2026, unconditionally. Holder of a $500,000 convertible unsecured note issued by DAIC To fund a $15 million standby equity purchase agreement and $3.0 million promissory notes pursuant to a standby equity purchase agreement to be entered into with DAIC",
+      "body_excerpt": "To fund a $15 million standby equity purchase agreement and $3.0 million promissory notes pursuant to a standby equity purchase agreement to be entered into with DAIC The Parties shall negotiate in good faith and use their reasonable best efforts to execute and deliver the Definitive Agreements on or before September 25, 2026.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -161,9 +210,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-10",
+      "summary_documents": [
+        "EX-10"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1282648",
@@ -191,11 +243,18 @@
       "accession": "0001728951-26-000066",
       "ticker": "EPRT",
       "exchange": "NYSE",
+      "structured_summary": {
+        "event": "So long as any Lender is a Defaulting Lender, such Lender shall not be a Hedge Bank with respect to any Specified Hedge Agreement entered into while such Lender was a Defaulting Lender.",
+        "detail": "The aggregate amount of the Second Tranche Term Loan Commitments on the Third Amendment Effective Date is $400,000,000.",
+        "event_source": "EX-10",
+        "detail_source": "EX-10",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "WHEREAS, the Administrative Agent and the Term Loan Lenders desire to make available to the Borrower, a term loan facility in the initial amount of $200,000,000 and a second tranche term loan facility in the initial amount of $400,000,000, on the terms and conditions contained herein; NOW, THEREFORE, in consideration of the premises and the agreements hereinafter set forth and for good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged by the parties hereto, the parties hereto hereby agree that on the Restatement Effective Date, as provided in Section 10.18 , the Existing Credit Agreement shall be amended and restated in its entirety as follows:",
-        "The execution, delivery and performance of this Agreement and the other Loan Documents, the issuance of Letters of Credit, the borrowings hereunder and the use of the proceeds thereof (a) will not violate any material Requirement of Law or any material Contractual Obligation of any Group Member and (b) will not result in, or require, the creation or imposition of any Lien on any of their respective properties or revenues pursuant to any Requirement of Law or any such Contractual Obligation (except, in the case of Liens on properties or assets that are not Eligible Unencumbered Assets, any such Lien that could not reasonably be expected to have a Material Adverse Effect). No Requirement of Law or Contractual Obligation applicable to any Group Member could reasonably be expected to have a Material Adverse Effect."
+        "So long as any Lender is a Defaulting Lender, such Lender shall not be a Hedge Bank with respect to any Specified Hedge Agreement entered into while such Lender was a Defaulting Lender.",
+        "The aggregate amount of the Second Tranche Term Loan Commitments on the Third Amendment Effective Date is $400,000,000."
       ],
-      "body_excerpt": "WHEREAS, the Administrative Agent and the Term Loan Lenders desire to make available to the Borrower, a term loan facility in the initial amount of $200,000,000 and a second tranche term loan facility in the initial amount of $400,000,000, on the terms and conditions contained herein; NOW, THEREFORE, in consideration of the premises and the agreements hereinafter set forth and for good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged by the parties hereto, the parties hereto hereby agree that on the Restatement Effective Date, as provided in Section 10.18 , the Existing Credit Agreement shall be amended and restated in its entirety as follows: The execution, delivery and performance of this Agreement and the other Loan Documents, the issuance of Letters of Credit, the borrowings hereunder and the use of the proceeds thereof (a) will not violate any material Requirement of Law or any material Contractual Obligation of any Group Member and (b) will not result in, or require, the creation or imposition of any Lien on any of their respective properties or revenues pursuant to any Requirement of Law or any such Contractual Obligation (except, in the case of Liens on properties or assets that are not Eligible Unencumbered Assets, any such Lien that could not reasonably be expected to have a Material Adverse Effect). No Requirement of Law or Contractual Obligation applicable to any Group Member could reasonably be expected to have a Material Adverse Effect.",
+      "body_excerpt": "So long as any Lender is a Defaulting Lender, such Lender shall not be a Hedge Bank with respect to any Specified Hedge Agreement entered into while such Lender was a Defaulting Lender. The aggregate amount of the Second Tranche Term Loan Commitments on the Third Amendment Effective Date is $400,000,000.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -207,9 +266,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-10",
+      "summary_documents": [
+        "EX-10"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1582554",
@@ -237,11 +299,18 @@
       "accession": "0001437749-26-030581",
       "ticker": "CLNN",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "The offering is expected to close on September 17, 2026.",
+        "detail": "(Nasdaq: CLNN), a clinical-stage biotechnology company focused on ALS, today announced the pricing of a registered direct offering of 1,219,513 shares at a purchase price of $3.28 per share to existing shareholders, including insiders, with total gross proceeds of $4 million.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "(Nasdaq: CLNN), a clinical-stage biotechnology company focused on ALS, today announced the pricing of a registered direct offering of 1,219,513 shares at a purchase price of $3.28 per share to existing shareholders, including insiders, with total gross proceeds of $4 million. The offering is expected to close on September 17, 2026.",
-        "$4 million registered direct offering priced at market under Nasdaq rules Proceeds are expected to be sufficient to fund the Company to mid-first quarter 2027"
+        "The offering is expected to close on September 17, 2026.",
+        "(Nasdaq: CLNN), a clinical-stage biotechnology company focused on ALS, today announced the pricing of a registered direct offering of 1,219,513 shares at a purchase price of $3.28 per share to existing shareholders, including insiders, with total gross proceeds of $4 million."
       ],
-      "body_excerpt": "(Nasdaq: CLNN), a clinical-stage biotechnology company focused on ALS, today announced the pricing of a registered direct offering of 1,219,513 shares at a purchase price of $3.28 per share to existing shareholders, including insiders, with total gross proceeds of $4 million. The offering is expected to close on September 17, 2026. $4 million registered direct offering priced at market under Nasdaq rules Proceeds are expected to be sufficient to fund the Company to mid-first quarter 2027",
+      "body_excerpt": "The offering is expected to close on September 17, 2026. (Nasdaq: CLNN), a clinical-stage biotechnology company focused on ALS, today announced the pricing of a registered direct offering of 1,219,513 shares at a purchase price of $3.28 per share to existing shareholders, including insiders, with total gross proceeds of $4 million.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -252,10 +321,14 @@
         "freshness_checked": true,
         "has_current_action": true
       },
-      "summary_source": "EX-10",
+      "summary_source": "EX-99.1/EX-10",
+      "summary_documents": [
+        "EX-99.1",
+        "EX-10"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1860871",
@@ -282,11 +355,18 @@
       "accession": "0001493152-26-042951",
       "ticker": "MEDS",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "value and liquidity of the DataMEDS common stock received as consideration; the risk that anticipated benefits of the transaction are",
+        "detail": "Tuesday, September 15, 2026 - DataMEDS AI, Inc .",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "value and liquidity of the DataMEDS common stock received as consideration; the risk that anticipated benefits of the transaction are not realized; the Company’s ability to generate and grow Compute Services revenue; the highly volatile and unpredictable price",
-        "note of DataMEDS for a total purchase value of $1.5 million. DataMEDS received the Helomics CLIA/CAP-certified clinical laboratory, inclusive"
+        "value and liquidity of the DataMEDS common stock received as consideration; the risk that anticipated benefits of the transaction are",
+        "Tuesday, September 15, 2026 - DataMEDS AI, Inc ."
       ],
-      "body_excerpt": "value and liquidity of the DataMEDS common stock received as consideration; the risk that anticipated benefits of the transaction are not realized; the Company’s ability to generate and grow Compute Services revenue; the highly volatile and unpredictable price note of DataMEDS for a total purchase value of $1.5 million. DataMEDS received the Helomics CLIA/CAP-certified clinical laboratory, inclusive",
+      "body_excerpt": "value and liquidity of the DataMEDS common stock received as consideration; the risk that anticipated benefits of the transaction are Tuesday, September 15, 2026 - DataMEDS AI, Inc .",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -298,9 +378,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "895419",
@@ -314,11 +397,18 @@
       "accession": "0001193125-26-393237",
       "ticker": "WOLF",
       "exchange": "NYSE",
+      "structured_summary": {
+        "event": "However, as Regulatory Approvals were received by the Regulatory Trigger Deadline, the Contingent Cash was distributed (i) $10.0 million to Wolfspeed and (ii) $5.0 million to Senior Secured Note claimholders.",
+        "detail": "Deadline, as defined in the Plan, Renesas would have received an additional 871,287 shares of New Common Stock from the Share Reserve.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "If Regulatory Approvals were not obtained prior to the Regulatory Trigger Deadline, the Contingent Cash was to be distributed to Renesas. However, as Regulatory Approvals were received by the Regulatory Trigger Deadline, the Contingent Cash was distributed (i) $10.0 million to Wolfspeed and (ii) $5.0 million to Senior Secured Note claimholders.",
-        "Deadline, as defined in the Plan, Renesas would have received an additional 871,287 shares of New Common Stock from the Share Reserve. However, if Regulatory Approvals were received by the Regulatory Trigger Deadline, existing equity holders would"
+        "However, as Regulatory Approvals were received by the Regulatory Trigger Deadline, the Contingent Cash was distributed (i) $10.0 million to Wolfspeed and (ii) $5.0 million to Senior Secured Note claimholders.",
+        "Deadline, as defined in the Plan, Renesas would have received an additional 871,287 shares of New Common Stock from the Share Reserve."
       ],
-      "body_excerpt": "If Regulatory Approvals were not obtained prior to the Regulatory Trigger Deadline, the Contingent Cash was to be distributed to Renesas. However, as Regulatory Approvals were received by the Regulatory Trigger Deadline, the Contingent Cash was distributed (i) $10.0 million to Wolfspeed and (ii) $5.0 million to Senior Secured Note claimholders. Deadline, as defined in the Plan, Renesas would have received an additional 871,287 shares of New Common Stock from the Share Reserve. However, if Regulatory Approvals were received by the Regulatory Trigger Deadline, existing equity holders would",
+      "body_excerpt": "However, as Regulatory Approvals were received by the Regulatory Trigger Deadline, the Contingent Cash was distributed (i) $10.0 million to Wolfspeed and (ii) $5.0 million to Senior Secured Note claimholders. Deadline, as defined in the Plan, Renesas would have received an additional 871,287 shares of New Common Stock from the Share Reserve.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -330,9 +420,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "8.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "2114229",
@@ -346,12 +439,19 @@
       "accession": "0001213900-26-100578",
       "ticker": "XIIIU",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "Capital Corp XIII (Nasdaq: XIIIU) (the “ Company ”) announced today that, commencing September 18, 2026, holders of the",
+        "detail": "PRESS RELEASE DATED SEPTEMBER 16, 2026",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
         "Capital Corp XIII (Nasdaq: XIIIU) (the “ Company ”) announced today that, commencing September 18, 2026, holders of the",
-        "“believe,” “continue,” “could,” “estimate,” “expect,” “intend,” “may,” “might,” “plan,” “possible,” “potential,” “predict,” “project,”"
+        "PRESS RELEASE DATED SEPTEMBER 16, 2026"
       ],
-      "body_excerpt": "Capital Corp XIII (Nasdaq: XIIIU) (the “ Company ”) announced today that, commencing September 18, 2026, holders of the “believe,” “continue,” “could,” “estimate,” “expect,” “intend,” “may,” “might,” “plan,” “possible,” “potential,” “predict,” “project,”",
-      "summary_quality": "medium",
+      "body_excerpt": "Capital Corp XIII (Nasdaq: XIIIU) (the “ Company ”) announced today that, commencing September 18, 2026, holders of the PRESS RELEASE DATED SEPTEMBER 16, 2026",
+      "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": false,
         "has_date": true,
@@ -362,9 +462,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "8.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1513525",
@@ -378,12 +481,19 @@
       "accession": "0001213900-26-100574",
       "ticker": "ADIL",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "On September 16, 2026, the Company entered into",
+        "detail": "(this “Amendment” ) is entered into as of September 16, 2026, by and among Adial Pharmaceuticals, Inc.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-10",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "2 to Securities Purchase Agreement (this “Amendment” ) is entered into as of September 16, 2026, by and among Adial Pharmaceuticals, Inc.",
-        "On September 16, 2026, the Company entered into 2 to the Purchase Agreement (the “Purchase Agreement Amendment”) with certain PIPE Investors, constituting"
+        "On September 16, 2026, the Company entered into",
+        "(this “Amendment” ) is entered into as of September 16, 2026, by and among Adial Pharmaceuticals, Inc."
       ],
-      "body_excerpt": "2 to Securities Purchase Agreement (this “Amendment” ) is entered into as of September 16, 2026, by and among Adial Pharmaceuticals, Inc. On September 16, 2026, the Company entered into 2 to the Purchase Agreement (the “Purchase Agreement Amendment”) with certain PIPE Investors, constituting",
-      "summary_quality": "medium",
+      "body_excerpt": "On September 16, 2026, the Company entered into (this “Amendment” ) is entered into as of September 16, 2026, by and among Adial Pharmaceuticals, Inc.",
+      "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": false,
         "has_date": true,
@@ -394,9 +504,13 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1/EX-10",
+      "summary_documents": [
+        "EX-99.1",
+        "EX-10"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1576873",
@@ -410,11 +524,18 @@
       "accession": "0001493152-26-042948",
       "ticker": "ABAT",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "Revenue grew 407%, cost of goods sold increased by only 67% to $24.8 million, compared to",
+        "detail": "will host its FY 2026 earnings call on Monday, September 14, 2026 at 4:30 p.m.",
+        "event_source": "EX-99",
+        "detail_source": "EX-99",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "Revenue grew 407%, cost of goods sold increased by only 67% to $24.8 million, compared to $14.9 million in fiscal year 2025, reflecting the implementation of numerous facility-wide",
-        "Series C Preferred Stock Authorized: 66,667 preferred shares, par value of $10.00 per share; Issued and outstanding: nil preferred shares Series D Preferred Stock Authorized: 5 preferred shares, par value of $0.001 per share; Issued and outstanding: nil preferred shares"
+        "Revenue grew 407%, cost of goods sold increased by only 67% to $24.8 million, compared to",
+        "will host its FY 2026 earnings call on Monday, September 14, 2026 at 4:30 p.m."
       ],
-      "body_excerpt": "Revenue grew 407%, cost of goods sold increased by only 67% to $24.8 million, compared to $14.9 million in fiscal year 2025, reflecting the implementation of numerous facility-wide Series C Preferred Stock Authorized: 66,667 preferred shares, par value of $10.00 per share; Issued and outstanding: nil preferred shares Series D Preferred Stock Authorized: 5 preferred shares, par value of $0.001 per share; Issued and outstanding: nil preferred shares",
+      "body_excerpt": "Revenue grew 407%, cost of goods sold increased by only 67% to $24.8 million, compared to will host its FY 2026 earnings call on Monday, September 14, 2026 at 4:30 p.m.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -425,10 +546,14 @@
         "freshness_checked": true,
         "has_current_action": true
       },
-      "summary_source": "EX-99.1",
+      "summary_source": "EX-99.1/EX-99",
+      "summary_documents": [
+        "EX-99.1",
+        "EX-99"
+      ],
       "summary_item": "2.02",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1549084",
@@ -442,11 +567,18 @@
       "accession": "0001493152-26-042947",
       "ticker": "CHRN",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "First Amendment to Secured Promissory Note and Security Agreement (this “ Amendment ”) is entered into as of",
+        "detail": "September 12, 2026 by and among CHRONOSCALE INTERMEDIATE, LLC (f/k/a EKSO BIONICS HOLDINGS, INC.), a Nevada limited liability",
+        "event_source": "EX-10",
+        "detail_source": "EX-10",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "First Amendment to Secured Promissory Note and Security Agreement (this “ Amendment ”) is entered into as of September 12, 2026 by and among CHRONOSCALE INTERMEDIATE, LLC (f/k/a EKSO BIONICS HOLDINGS, INC.), a Nevada limited liability",
-        "Note on the date hereof is $2,000,000.00; (b) no defenses, offsets, claims, or counterclaims whatsoever exist to the punctual performance of all obligations and the full payment of all amounts due under the Note and the other Loan Documents executed in connection therewith;"
+        "First Amendment to Secured Promissory Note and Security Agreement (this “ Amendment ”) is entered into as of",
+        "September 12, 2026 by and among CHRONOSCALE INTERMEDIATE, LLC (f/k/a EKSO BIONICS HOLDINGS, INC.), a Nevada limited liability"
       ],
-      "body_excerpt": "First Amendment to Secured Promissory Note and Security Agreement (this “ Amendment ”) is entered into as of September 12, 2026 by and among CHRONOSCALE INTERMEDIATE, LLC (f/k/a EKSO BIONICS HOLDINGS, INC.), a Nevada limited liability Note on the date hereof is $2,000,000.00; (b) no defenses, offsets, claims, or counterclaims whatsoever exist to the punctual performance of all obligations and the full payment of all amounts due under the Note and the other Loan Documents executed in connection therewith;",
+      "body_excerpt": "First Amendment to Secured Promissory Note and Security Agreement (this “ Amendment ”) is entered into as of September 12, 2026 by and among CHRONOSCALE INTERMEDIATE, LLC (f/k/a EKSO BIONICS HOLDINGS, INC.), a Nevada limited liability",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -458,9 +590,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-10",
+      "summary_documents": [
+        "EX-10"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1419554",
@@ -514,11 +649,18 @@
       "accession": "0001013272-26-000020",
       "ticker": "NWFL",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "HONESDALE, PENNSYLVANIA- September 16 , 2026 (GLOBE NEWSWIRE) -- Norwood Financial Corp (NASDAQ Global Market - NWFL) and its subsidiary Wayne Bank, announced that the Board of Directors has declared a $ 0.3 2 per share cash dividend, which is payable on November 2, 2026 , to s hareholders of record as of October 15, 2026 .",
+        "detail": "The Company has total assets of $2.9 billion.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "HONESDALE, PENNSYLVANIA- September 16 , 2026 (GLOBE NEWSWIRE) -- Norwood Financial Corp (NASDAQ Global Market - NWFL) and its subsidiary Wayne Bank, announced that the Board of Directors has declared a $ 0.3 2 per share cash dividend, which is payable on November 2, 2026 , to s hareholders of record as of October 15, 2026 . The $0.3 2 per share remains the same as the per share dividend declared in the second quarter of 202 6 .",
+        "HONESDALE, PENNSYLVANIA- September 16 , 2026 (GLOBE NEWSWIRE) -- Norwood Financial Corp (NASDAQ Global Market - NWFL) and its subsidiary Wayne Bank, announced that the Board of Directors has declared a $ 0.3 2 per share cash dividend, which is payable on November 2, 2026 , to s hareholders of record as of October 15, 2026 .",
         "The Company has total assets of $2.9 billion."
       ],
-      "body_excerpt": "HONESDALE, PENNSYLVANIA- September 16 , 2026 (GLOBE NEWSWIRE) -- Norwood Financial Corp (NASDAQ Global Market - NWFL) and its subsidiary Wayne Bank, announced that the Board of Directors has declared a $ 0.3 2 per share cash dividend, which is payable on November 2, 2026 , to s hareholders of record as of October 15, 2026 . The $0.3 2 per share remains the same as the per share dividend declared in the second quarter of 202 6 . The Company has total assets of $2.9 billion.",
+      "body_excerpt": "HONESDALE, PENNSYLVANIA- September 16 , 2026 (GLOBE NEWSWIRE) -- Norwood Financial Corp (NASDAQ Global Market - NWFL) and its subsidiary Wayne Bank, announced that the Board of Directors has declared a $ 0.3 2 per share cash dividend, which is payable on November 2, 2026 , to s hareholders of record as of October 15, 2026 . The Company has total assets of $2.9 billion.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -530,9 +672,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "8.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1306830",
@@ -572,12 +717,19 @@
       "accession": "0001104659-26-108302",
       "ticker": "ACDC",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "Parties, (ii) it fully intends to release all claims against THRC Released Parties as set forth above, and (iii) it has been",
+        "detail": "that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement,",
+        "event_source": "EX-10",
+        "detail_source": "EX-10",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "which was determined by dividing (x) $34,320,000 by (y) the VWAP Price (as defined below), in exchange for THRC’s agreement that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement,",
-        "is made as of September 11, 2026 (the “ Effective Date ”), by and among THRC Holdings, LP, a Texas limited partnership"
+        "Parties, (ii) it fully intends to release all claims against THRC Released Parties as set forth above, and (iii) it has been",
+        "that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement,"
       ],
-      "body_excerpt": "which was determined by dividing (x) $34,320,000 by (y) the VWAP Price (as defined below), in exchange for THRC’s agreement that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement, is made as of September 11, 2026 (the “ Effective Date ”), by and among THRC Holdings, LP, a Texas limited partnership",
-      "summary_quality": "medium",
+      "body_excerpt": "Parties, (ii) it fully intends to release all claims against THRC Released Parties as set forth above, and (iii) it has been that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement,",
+      "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": true,
@@ -588,9 +740,12 @@
         "has_current_action": false
       },
       "summary_source": "EX-10",
+      "summary_documents": [
+        "EX-10"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1228454",
@@ -604,11 +759,18 @@
       "accession": "0001193125-26-393183",
       "ticker": "BCBP",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "$50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter.",
+        "detail": "above items, we currently expect to record a net loss for the third quarter of 2026 in the range of $126.2 million to $136.1 million.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "$50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter. above items, we currently expect to record a net loss for the third quarter of 2026 in the range of $126.2 million to $136.1 million.",
-        "third quarter of 2026, the Company determined that it is more likely than not that the net deferred tax assets will not be realized and therefore recorded a valuation allowance against its entire net deferred tax asset balance of approximately $50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter."
+        "$50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter.",
+        "above items, we currently expect to record a net loss for the third quarter of 2026 in the range of $126.2 million to $136.1 million."
       ],
-      "body_excerpt": "$50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter. above items, we currently expect to record a net loss for the third quarter of 2026 in the range of $126.2 million to $136.1 million. third quarter of 2026, the Company determined that it is more likely than not that the net deferred tax assets will not be realized and therefore recorded a valuation allowance against its entire net deferred tax asset balance of approximately $50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter.",
+      "body_excerpt": "$50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter. above items, we currently expect to record a net loss for the third quarter of 2026 in the range of $126.2 million to $136.1 million.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -620,9 +782,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "8.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1562733",
@@ -676,12 +841,19 @@
       "accession": "0001193125-26-393175",
       "ticker": "RM",
       "exchange": "NYSE",
+      "structured_summary": {
+        "event": "14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income",
+        "detail": "partnership live in Texas; additional states launching this year $65MM+ originated since launch in 1Q 26; 28% of current run-rate originations Pre-tax margin projected to improve vs.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "Responsible Portfolio Growth 13 Portfolio Growth Trend ($ in millions) Average FICO relatively consistent YoY and over the last several quarters Achieved 9.6% YoY portfolio growth from large loans including high-quality auto-secured loans and new branch openings Auto-secured product portfolio grew $78.1MM to 15.1% of the total portfolio, compared to 12.5% in the prior-year period New branches opened since 2Q 25 have generated $12.3MM, or 6.6%, of total YoY portfolio growth Quarterly Origination Trend ($ in millions) 14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income",
-        "14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income Recent Credit Trends 30+ & 90+ DQ % ($ in millions) Net Credit Loss Rates 15 2Q 26 delinquency rate of 7.0% decreased sequentially 20 bps and increased 40 bps YoY."
+        "14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income",
+        "partnership live in Texas; additional states launching this year $65MM+ originated since launch in 1Q 26; 28% of current run-rate originations Pre-tax margin projected to improve vs."
       ],
-      "body_excerpt": "Responsible Portfolio Growth 13 Portfolio Growth Trend ($ in millions) Average FICO relatively consistent YoY and over the last several quarters Achieved 9.6% YoY portfolio growth from large loans including high-quality auto-secured loans and new branch openings Auto-secured product portfolio grew $78.1MM to 15.1% of the total portfolio, compared to 12.5% in the prior-year period New branches opened since 2Q 25 have generated $12.3MM, or 6.6%, of total YoY portfolio growth Quarterly Origination Trend ($ in millions) 14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income 14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income Recent Credit Trends 30+ & 90+ DQ % ($ in millions) Net Credit Loss Rates 15 2Q 26 delinquency rate of 7.0% decreased sequentially 20 bps and increased 40 bps YoY.",
-      "summary_quality": "medium",
+      "body_excerpt": "14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income partnership live in Texas; additional states launching this year $65MM+ originated since launch in 1Q 26; 28% of current run-rate originations Pre-tax margin projected to improve vs.",
+      "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": false,
@@ -692,9 +864,12 @@
         "has_current_action": false
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "7.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1418135",
@@ -708,6 +883,13 @@
       "accession": "0001418135-26-000058",
       "ticker": "KDP",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "FRISCO, TX and BURLINGTON, MA (September 16, 2026) – Keurig Dr Pepper (NASDAQ: KDP) announced today that its Board of Directors has declared a regular quarterly cash dividend of $0.23 per share, payable in U.S.",
+        "detail": "The regular quarterly dividend will be paid on October 9, 2026, to shareholders of record on September 28, 2026.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
         "FRISCO, TX and BURLINGTON, MA (September 16, 2026) – Keurig Dr Pepper (NASDAQ: KDP) announced today that its Board of Directors has declared a regular quarterly cash dividend of $0.23 per share, payable in U.S.",
         "The regular quarterly dividend will be paid on October 9, 2026, to shareholders of record on September 28, 2026."
@@ -724,9 +906,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "8.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "2035644",
@@ -754,12 +939,19 @@
       "accession": "0001174947-26-000877",
       "ticker": "RGR",
       "exchange": "NYSE",
+      "structured_summary": {
+        "event": "are not required to take any action in connection with the expiration of the Rights Plan.",
+        "detail": "FOR RELEASE: September 16, 2026",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "13, 2026 to September 16, 2026. The effect of the Amendment is to terminate the Rights Plan at the close of business today.",
-        "shareholder rights plan (the “Rights Plan”) pursuant to which the final expiration date has been accelerated from October 13, 2026 to September 16, 2026."
+        "are not required to take any action in connection with the expiration of the Rights Plan.",
+        "FOR RELEASE: September 16, 2026"
       ],
-      "body_excerpt": "13, 2026 to September 16, 2026. The effect of the Amendment is to terminate the Rights Plan at the close of business today. shareholder rights plan (the “Rights Plan”) pursuant to which the final expiration date has been accelerated from October 13, 2026 to September 16, 2026.",
-      "summary_quality": "medium",
+      "body_excerpt": "are not required to take any action in connection with the expiration of the Rights Plan. FOR RELEASE: September 16, 2026",
+      "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": false,
         "has_date": true,
@@ -770,9 +962,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1419275",
@@ -812,11 +1007,18 @@
       "accession": "0001213900-26-100546",
       "ticker": "ALMU",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "Eastern Time on September 16, 2026, to discuss the Company’s financial results and business outlook.",
+        "detail": "● Revenue was $0.6 million, compared to $1.3 million in the",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "● Full year revenue was $4.5 million, compared to $4.7 million in the prior year, and was primarily from ● Net loss was $9.2 million, or ($0.52) per basic and diluted share, compared to a net loss of $3.0 million,",
-        "2026, compared to $37.8 million in the prior quarter. ● Aeluma raised $20.1 million in net proceeds from the original issuance of 830,484 shares at an average"
+        "Eastern Time on September 16, 2026, to discuss the Company’s financial results and business outlook.",
+        "● Revenue was $0.6 million, compared to $1.3 million in the"
       ],
-      "body_excerpt": "● Full year revenue was $4.5 million, compared to $4.7 million in the prior year, and was primarily from ● Net loss was $9.2 million, or ($0.52) per basic and diluted share, compared to a net loss of $3.0 million, 2026, compared to $37.8 million in the prior quarter. ● Aeluma raised $20.1 million in net proceeds from the original issuance of 830,484 shares at an average",
+      "body_excerpt": "Eastern Time on September 16, 2026, to discuss the Company’s financial results and business outlook. ● Revenue was $0.6 million, compared to $1.3 million in the",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -828,9 +1030,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "2.02",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "920760",
@@ -844,11 +1049,18 @@
       "accession": "0001628280-26-062287",
       "ticker": "LEN-B",
       "exchange": "NYSE",
+      "structured_summary": {
+        "event": "We expect our average sales price to be in the range of approximately $370,000 to $380,000 and our SG&A to improve toward 8.7% to 9.0%.",
+        "detail": "Revenues from home sales decreased 6% in the third quarter of 2026 to $7.7 billion from $8.2 billion in the third quarter of 2025.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "“Looking ahead to the fourth quarter of 2026, we expect to generate new orders of approximately 19,500 to 20,500 homes, and to deliver approximately 22,000 to 23,000 homes with gross margin of approximately 15.5% to 16.0%. We expect our average sales price to be in the range of approximately $370,000 to $380,000 and our SG&A to improve toward 8.7% to 9.0%.",
-        "Revenues from home sales decreased 6% in the third quarter of 2026 to $7.7 billion from $8.2 billion in the third quarter of 2025. Revenues were lower primarily due to both a 3% decrease in the average sales price of homes and a 3% decrease in the number of home deliveries."
+        "We expect our average sales price to be in the range of approximately $370,000 to $380,000 and our SG&A to improve toward 8.7% to 9.0%.",
+        "Revenues from home sales decreased 6% in the third quarter of 2026 to $7.7 billion from $8.2 billion in the third quarter of 2025."
       ],
-      "body_excerpt": "“Looking ahead to the fourth quarter of 2026, we expect to generate new orders of approximately 19,500 to 20,500 homes, and to deliver approximately 22,000 to 23,000 homes with gross margin of approximately 15.5% to 16.0%. We expect our average sales price to be in the range of approximately $370,000 to $380,000 and our SG&A to improve toward 8.7% to 9.0%. Revenues from home sales decreased 6% in the third quarter of 2026 to $7.7 billion from $8.2 billion in the third quarter of 2025. Revenues were lower primarily due to both a 3% decrease in the average sales price of homes and a 3% decrease in the number of home deliveries.",
+      "body_excerpt": "We expect our average sales price to be in the range of approximately $370,000 to $380,000 and our SG&A to improve toward 8.7% to 9.0%. Revenues from home sales decreased 6% in the third quarter of 2026 to $7.7 billion from $8.2 billion in the third quarter of 2025.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -860,9 +1072,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "2.02",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1679273",
@@ -903,12 +1118,22 @@
       "accession": "0001493152-26-042933",
       "ticker": "LPCN",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "",
+        "detail": "",
+        "event_source": "",
+        "detail_source": "",
+        "quality": "low"
+      },
       "summary_quality": "low",
       "summary_flags": {},
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "8.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1544227",
@@ -950,11 +1175,18 @@
       "accession": "0001728951-26-000064",
       "ticker": "EPRT",
       "exchange": "NYSE",
+      "structured_summary": {
+        "event": "We completed a record $1.3 billion of gross investments across 270 properties, the highest level of annual gross investment in the Company’s history.",
+        "detail": "LONG LEASE TERM Our properties generally are subject to long-term net leases, as evident by our 14.4 year weighted average lease term that we believe provides us with a stable base of revenue from which to grow our portfolio.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "In 2025, we completed $1.3 billion of gross investments in 270 properties in 115 transactions at a weighted average cash cap rate of 7.7%, the highest level of annual gross investments in the Company’s history. Our primary business objective is to maximize shareholder value by generating attractive, risk- adjusted returns through the acquisition, ownership, management, and growth of a diversified portfolio of commercially desirable properties that provides a growing stream of earnings and dividends.",
-        "During 2025, EPRT contributed $20,000 to charitable organizations supporting our local communities, veterans, and underserved youth. OUR 2025 COMMUNITY PARTNERS Capital Area YMCA EPRT provided $5,000 in sponsorship support for the YMCA’s annual golf and run/walk events, helping support community programs focused on youth development, healthy living, and individuals and families in need."
+        "We completed a record $1.3 billion of gross investments across 270 properties, the highest level of annual gross investment in the Company’s history.",
+        "LONG LEASE TERM Our properties generally are subject to long-term net leases, as evident by our 14.4 year weighted average lease term that we believe provides us with a stable base of revenue from which to grow our portfolio."
       ],
-      "body_excerpt": "In 2025, we completed $1.3 billion of gross investments in 270 properties in 115 transactions at a weighted average cash cap rate of 7.7%, the highest level of annual gross investments in the Company’s history. Our primary business objective is to maximize shareholder value by generating attractive, risk- adjusted returns through the acquisition, ownership, management, and growth of a diversified portfolio of commercially desirable properties that provides a growing stream of earnings and dividends. During 2025, EPRT contributed $20,000 to charitable organizations supporting our local communities, veterans, and underserved youth. OUR 2025 COMMUNITY PARTNERS Capital Area YMCA EPRT provided $5,000 in sponsorship support for the YMCA’s annual golf and run/walk events, helping support community programs focused on youth development, healthy living, and individuals and families in need.",
+      "body_excerpt": "We completed a record $1.3 billion of gross investments across 270 properties, the highest level of annual gross investment in the Company’s history. LONG LEASE TERM Our properties generally are subject to long-term net leases, as evident by our 14.4 year weighted average lease term that we believe provides us with a stable base of revenue from which to grow our portfolio.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -965,10 +1197,13 @@
         "freshness_checked": true,
         "has_current_action": true
       },
-      "summary_source": "primary",
+      "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "7.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1393311",
@@ -996,12 +1231,19 @@
       "accession": "0000950142-26-002556",
       "ticker": "CPRI",
       "exchange": "NYSE",
+      "structured_summary": {
+        "event": "“believes”, expects”, “intends”, “will”, “should”, “could”, “would”,",
+        "detail": "Sustainability Officer, effective October 19, 2026.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "Without limitation, any statements preceded or followed by or that include the words “plans”, “believes”, expects”, “intends”, “will”, “should”, “could”, “would”,",
-        "Capri Holdings Limited (NYSE: CPRI), a global fashion luxury group, today announced the appointment of Catherine So as Chief Legal and Sustainability Officer, effective October 19, 2026."
+        "“believes”, expects”, “intends”, “will”, “should”, “could”, “would”,",
+        "Sustainability Officer, effective October 19, 2026."
       ],
-      "body_excerpt": "Without limitation, any statements preceded or followed by or that include the words “plans”, “believes”, expects”, “intends”, “will”, “should”, “could”, “would”, Capri Holdings Limited (NYSE: CPRI), a global fashion luxury group, today announced the appointment of Catherine So as Chief Legal and Sustainability Officer, effective October 19, 2026.",
-      "summary_quality": "medium",
+      "body_excerpt": "“believes”, expects”, “intends”, “will”, “should”, “could”, “would”, Sustainability Officer, effective October 19, 2026.",
+      "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": false,
         "has_date": true,
@@ -1012,9 +1254,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "8.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "2030954",
@@ -1042,11 +1287,18 @@
       "accession": "0001159036-26-000121",
       "ticker": "HALO",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "The Company intends to use the remainder of the net proceeds from the offering for general corporate purposes, including working capital, capital expenditures, potential acquisitions and strategic transactions, and, potentially, future note repurchases including repurchases of the Existing Convertible Notes from",
+        "detail": "The Company also expects to grant a 13-day option to the initial purchasers to purchase up to an additional $150 million aggregate principal amount of the Convertible Notes.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "(Nasdaq: HALO) (“Halozyme” or the “Company”), today announced that it intends to offer, subject to market conditions and other factors, $1.05 billion aggregate principal amount of convertible senior notes due 2033 (the “Convertible Notes”). The Company also expects to grant a 13-day option to the initial purchasers to purchase up to an additional $150 million aggregate principal amount of the Convertible Notes.",
-        "The Company also expects to use a portion of the net proceeds of the offering to enter into privately negotiated agreements with certain holders of its outstanding 0.25% convertible senior notes due 2027 (the “2027 Notes”) and 1.00% convertible senior notes due 2028 (the “2028 Notes” and, together with the 2027 Notes, the “Existing Convertible Notes”) to repurchase their Existing Convertible Notes for cash through privately negotiated transactions entered into concurrently with or shortly after the pricing of the proposed offering (the “Note Repurchases”). The Company intends to use the remainder of the net proceeds from the offering for general corporate purposes, including working capital, capital expenditures, potential acquisitions and strategic transactions, and, potentially, future note repurchases including repurchases of the Existing Convertible Notes from"
+        "The Company intends to use the remainder of the net proceeds from the offering for general corporate purposes, including working capital, capital expenditures, potential acquisitions and strategic transactions, and, potentially, future note repurchases including repurchases of the Existing Convertible Notes from",
+        "The Company also expects to grant a 13-day option to the initial purchasers to purchase up to an additional $150 million aggregate principal amount of the Convertible Notes."
       ],
-      "body_excerpt": "(Nasdaq: HALO) (“Halozyme” or the “Company”), today announced that it intends to offer, subject to market conditions and other factors, $1.05 billion aggregate principal amount of convertible senior notes due 2033 (the “Convertible Notes”). The Company also expects to grant a 13-day option to the initial purchasers to purchase up to an additional $150 million aggregate principal amount of the Convertible Notes. The Company also expects to use a portion of the net proceeds of the offering to enter into privately negotiated agreements with certain holders of its outstanding 0.25% convertible senior notes due 2027 (the “2027 Notes”) and 1.00% convertible senior notes due 2028 (the “2028 Notes” and, together with the 2027 Notes, the “Existing Convertible Notes”) to repurchase their Existing Convertible Notes for cash through privately negotiated transactions entered into concurrently with or shortly after the pricing of the proposed offering (the “Note Repurchases”). The Company intends to use the remainder of the net proceeds from the offering for general corporate purposes, including working capital, capital expenditures, potential acquisitions and strategic transactions, and, potentially, future note repurchases including repurchases of the Existing Convertible Notes from",
+      "body_excerpt": "The Company intends to use the remainder of the net proceeds from the offering for general corporate purposes, including working capital, capital expenditures, potential acquisitions and strategic transactions, and, potentially, future note repurchases including repurchases of the Existing Convertible Notes from The Company also expects to grant a 13-day option to the initial purchasers to purchase up to an additional $150 million aggregate principal amount of the Convertible Notes.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -1058,9 +1310,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "8.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "930420",
@@ -1088,12 +1343,19 @@
       "accession": "0001477932-26-005642",
       "ticker": "JOB",
       "exchange": "NYSE",
+      "structured_summary": {
+        "event": "The supplement states that the Company’s 2026 Annual Meeting of Shareholders (the “Annual Meeting”) to be held in a virtual meeting format originally scheduled for 9:00 a.m., Eastern Daylight Time (EDT) on September 24, 2026, has been postponed.",
+        "detail": "The Annual Meeting will now take place on Wednesday, September 30, 2026, at 9:00 a.m.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "The supplement states that the Company’s 2026 Annual Meeting of Shareholders (the “Annual Meeting”) to be held in a virtual meeting format originally scheduled for 9:00 a.m., Eastern Daylight Time (EDT) on September 24, 2026, has been postponed. The Annual Meeting will now take place on Wednesday, September 30, 2026, at 9:00 a.m.",
-        "(NYSE American: JOB) together with its subsidiaries (collectively referred to as the “Company”, “GEE Group”, “our”, or “we”), a provider of professional staffing services and human resource solutions, today announced that the Company has filed a supplement to its previously filed Proxy Statement which was dated and filed with the Securities and Exchange Commission (“SEC”) on August 31, 2026. The supplement states that the Company’s 2026 Annual Meeting of Shareholders (the “Annual Meeting”) to be held in a virtual meeting format originally scheduled for 9:00 a.m., Eastern Daylight Time (EDT) on September 24, 2026, has been postponed."
+        "The supplement states that the Company’s 2026 Annual Meeting of Shareholders (the “Annual Meeting”) to be held in a virtual meeting format originally scheduled for 9:00 a.m., Eastern Daylight Time (EDT) on September 24, 2026, has been postponed.",
+        "The Annual Meeting will now take place on Wednesday, September 30, 2026, at 9:00 a.m."
       ],
-      "body_excerpt": "The supplement states that the Company’s 2026 Annual Meeting of Shareholders (the “Annual Meeting”) to be held in a virtual meeting format originally scheduled for 9:00 a.m., Eastern Daylight Time (EDT) on September 24, 2026, has been postponed. The Annual Meeting will now take place on Wednesday, September 30, 2026, at 9:00 a.m. (NYSE American: JOB) together with its subsidiaries (collectively referred to as the “Company”, “GEE Group”, “our”, or “we”), a provider of professional staffing services and human resource solutions, today announced that the Company has filed a supplement to its previously filed Proxy Statement which was dated and filed with the Securities and Exchange Commission (“SEC”) on August 31, 2026. The supplement states that the Company’s 2026 Annual Meeting of Shareholders (the “Annual Meeting”) to be held in a virtual meeting format originally scheduled for 9:00 a.m., Eastern Daylight Time (EDT) on September 24, 2026, has been postponed.",
-      "summary_quality": "medium",
+      "body_excerpt": "The supplement states that the Company’s 2026 Annual Meeting of Shareholders (the “Annual Meeting”) to be held in a virtual meeting format originally scheduled for 9:00 a.m., Eastern Daylight Time (EDT) on September 24, 2026, has been postponed. The Annual Meeting will now take place on Wednesday, September 30, 2026, at 9:00 a.m.",
+      "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": false,
         "has_date": true,
@@ -1104,9 +1366,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "8.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1774170",
@@ -1159,11 +1424,18 @@
       "accession": "0001193125-26-393130",
       "ticker": "GHI",
       "exchange": "NYSE",
+      "structured_summary": {
+        "event": "The Partnership expects and believes the interest earned on these mortgage revenue bonds is excludable from gross income for federal income tax purposes.",
+        "detail": "Omaha, Nebraska – On September 16, 2026, Greystone Housing Impact Investors LP (NYSE: GHI) (the “Partnership”) announced that the Board of Managers of Greystone AF Manager LLC (“Greystone Manager”) declared a cash distribution to the Partnership’s Beneficial Unit Certificate (“BUC”) holders of $0.14 per BUC.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "Omaha, Nebraska – On September 16, 2026, Greystone Housing Impact Investors LP (NYSE: GHI) (the “Partnership”) announced that the Board of Managers of Greystone AF Manager LLC (“Greystone Manager”) declared a cash distribution to the Partnership’s Beneficial Unit Certificate (“BUC”) holders of $0.14 per BUC. The cash distribution will be paid on October 30, 2026 to all BUC holders of record as of the close of trading on September 30, 2026.",
-        "The cash distribution will be paid on October 30, 2026 to all BUC holders of record as of the close of trading on September 30, 2026. The BUCs will trade ex-distribution as of September 30, 2026."
+        "The Partnership expects and believes the interest earned on these mortgage revenue bonds is excludable from gross income for federal income tax purposes.",
+        "Omaha, Nebraska – On September 16, 2026, Greystone Housing Impact Investors LP (NYSE: GHI) (the “Partnership”) announced that the Board of Managers of Greystone AF Manager LLC (“Greystone Manager”) declared a cash distribution to the Partnership’s Beneficial Unit Certificate (“BUC”) holders of $0.14 per BUC."
       ],
-      "body_excerpt": "Omaha, Nebraska – On September 16, 2026, Greystone Housing Impact Investors LP (NYSE: GHI) (the “Partnership”) announced that the Board of Managers of Greystone AF Manager LLC (“Greystone Manager”) declared a cash distribution to the Partnership’s Beneficial Unit Certificate (“BUC”) holders of $0.14 per BUC. The cash distribution will be paid on October 30, 2026 to all BUC holders of record as of the close of trading on September 30, 2026. The cash distribution will be paid on October 30, 2026 to all BUC holders of record as of the close of trading on September 30, 2026. The BUCs will trade ex-distribution as of September 30, 2026.",
+      "body_excerpt": "The Partnership expects and believes the interest earned on these mortgage revenue bonds is excludable from gross income for federal income tax purposes. Omaha, Nebraska – On September 16, 2026, Greystone Housing Impact Investors LP (NYSE: GHI) (the “Partnership”) announced that the Board of Managers of Greystone AF Manager LLC (“Greystone Manager”) declared a cash distribution to the Partnership’s Beneficial Unit Certificate (“BUC”) holders of $0.14 per BUC.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -1175,9 +1447,12 @@
         "has_current_action": true
       },
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "8.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "887396",
@@ -1191,11 +1466,18 @@
       "accession": "0001072613-26-000771",
       "ticker": "EP",
       "exchange": "NYSE",
+      "structured_summary": {
+        "event": "contract rate of interest allowed by law will be the Maximum Rate of interest applicable to this Note from the effective date forward,",
+        "detail": "Issue Date: September 10, 2026",
+        "event_source": "EX-10",
+        "detail_source": "EX-10",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "equal to Two Dollars and 838/1,000 ($2.838) (the “ Conversion Price ”), at the option of the Investor, at any time and from time to time from the period beginning on November 9, 2026 and ending on the Maturity Date.",
-        "“ Investor ”), the principal sum of Three Million Two Hundred Fifty Thousand Dollars ($3,250,000), plus any and all accrued but unpaid interest thereon, in cash on March 10, 2028 (subject to Section 9, the “ Maturity Date ”)."
+        "contract rate of interest allowed by law will be the Maximum Rate of interest applicable to this Note from the effective date forward,",
+        "Issue Date: September 10, 2026"
       ],
-      "body_excerpt": "equal to Two Dollars and 838/1,000 ($2.838) (the “ Conversion Price ”), at the option of the Investor, at any time and from time to time from the period beginning on November 9, 2026 and ending on the Maturity Date. “ Investor ”), the principal sum of Three Million Two Hundred Fifty Thousand Dollars ($3,250,000), plus any and all accrued but unpaid interest thereon, in cash on March 10, 2028 (subject to Section 9, the “ Maturity Date ”).",
+      "body_excerpt": "contract rate of interest allowed by law will be the Maximum Rate of interest applicable to this Note from the effective date forward, Issue Date: September 10, 2026",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -1206,10 +1488,13 @@
         "freshness_checked": true,
         "has_current_action": true
       },
-      "summary_source": "primary",
+      "summary_source": "EX-10",
+      "summary_documents": [
+        "EX-10"
+      ],
       "summary_item": "1.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1868941",
@@ -1223,11 +1508,18 @@
       "accession": "0001104659-26-108270",
       "ticker": "FLNC",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "Revenue of approximately $2.4 billion compared to the prior guidance midpoint of approximately $3.0 billion.",
+        "detail": "loss of approximately $200.0 million compared to prior guidance midpoint of a loss of approximately $10.0 million.",
+        "event_source": "EX-99.1",
+        "detail_source": "EX-99.1",
+        "quality": "high"
+      },
       "investor_summary_sentences": [
-        "Revenue of approximately $2.4 billion compared to the prior guidance midpoint of approximately $3.0 billion. loss of approximately $200.0 million compared to prior guidance midpoint of a loss of approximately $10.0 million.",
-        "on our investor call, including without limitation, statements regarding the Company’s fiscal 2026 guidance expectations; the Company's future results of operations and financial position, including expected revenue shifts; the Company’s future operational performance,"
+        "Revenue of approximately $2.4 billion compared to the prior guidance midpoint of approximately $3.0 billion.",
+        "loss of approximately $200.0 million compared to prior guidance midpoint of a loss of approximately $10.0 million."
       ],
-      "body_excerpt": "Revenue of approximately $2.4 billion compared to the prior guidance midpoint of approximately $3.0 billion. loss of approximately $200.0 million compared to prior guidance midpoint of a loss of approximately $10.0 million. on our investor call, including without limitation, statements regarding the Company’s fiscal 2026 guidance expectations; the Company's future results of operations and financial position, including expected revenue shifts; the Company’s future operational performance,",
+      "body_excerpt": "Revenue of approximately $2.4 billion compared to the prior guidance midpoint of approximately $3.0 billion. loss of approximately $200.0 million compared to prior guidance midpoint of a loss of approximately $10.0 million.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
@@ -1238,10 +1530,14 @@
         "freshness_checked": true,
         "has_current_action": false
       },
-      "summary_source": "EX-99.1",
+      "summary_source": "EX-99.1/EX-99",
+      "summary_documents": [
+        "EX-99.1",
+        "EX-99"
+      ],
       "summary_item": "7.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "1370946",
@@ -1268,12 +1564,22 @@
       "accession": "0001493152-26-042920",
       "ticker": "TONX",
       "exchange": "NASDAQ",
+      "structured_summary": {
+        "event": "",
+        "detail": "",
+        "event_source": "",
+        "detail_source": "",
+        "quality": "low"
+      },
       "summary_quality": "low",
       "summary_flags": {},
       "summary_source": "EX-99.1",
+      "summary_documents": [
+        "EX-99.1"
+      ],
       "summary_item": "7.01",
       "summary_filing_date": "2026-09-16",
-      "summary_freshness_version": "0.2.16"
+      "summary_freshness_version": "0.2.17"
     },
     {
       "cik": "2023554",
