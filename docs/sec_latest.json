@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-17T06:30:12.970468+00:00",
+  "generated_at": "2026-09-17T07:11:49.410546+00:00",
   "source": "SEC EDGAR latest 8-K/6-K via GitHub Actions",
-  "collector_version": "0.2.15",
+  "collector_version": "0.2.16",
   "excluded": 40,
   "events": [
     {
@@ -19,7 +19,9 @@
       "summary_quality": "low",
       "summary_flags": {},
       "summary_source": "EX-99.1",
-      "summary_item": "7.01"
+      "summary_item": "7.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1591890",
@@ -34,20 +36,24 @@
       "ticker": "FGNXP",
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
-        "Nexus Board of Directors Approves Affordable Housing Real Estate Acquisition Strategy and $10 Million Investment in FG Communities plans to change its name to FG Communities Holdings, Inc.",
-        "acquisitions through a combination of cash on hand, debt financing and proceeds from issuances of its common stock. financing of each acquisition will depend on the characteristics of the property, prevailing market conditions and the Company’s"
+        "NC, September 16, 2026 (GLOBE NEWSWIRE) - FG Nexus (Nasdaq: FGNX, FGNXP) (the “Company”) today announced that its Board of Directors has approved a strategy to acquire affordable housing communities and make a $10 million investment in FG Communities, Inc.",
+        "Nexus Board of Directors Approves Affordable Housing Real Estate Acquisition Strategy and $10 Million Investment in FG Communities plans to change its name to FG Communities Holdings, Inc."
       ],
-      "body_excerpt": "Nexus Board of Directors Approves Affordable Housing Real Estate Acquisition Strategy and $10 Million Investment in FG Communities plans to change its name to FG Communities Holdings, Inc. acquisitions through a combination of cash on hand, debt financing and proceeds from issuances of its common stock. financing of each acquisition will depend on the characteristics of the property, prevailing market conditions and the Company’s",
+      "body_excerpt": "NC, September 16, 2026 (GLOBE NEWSWIRE) - FG Nexus (Nasdaq: FGNX, FGNXP) (the “Company”) today announced that its Board of Directors has approved a strategy to acquire affordable housing communities and make a $10 million investment in FG Communities, Inc. Nexus Board of Directors Approves Affordable Housing Real Estate Acquisition Strategy and $10 Million Investment in FG Communities plans to change its name to FG Communities Holdings, Inc.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
-        "has_date": false,
+        "has_date": true,
         "has_duration": false,
         "has_future": true,
-        "item": "7.01"
+        "item": "7.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "7.01"
+      "summary_item": "7.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "2093524",
@@ -63,19 +69,23 @@
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
         "This Agreement is intended to create a contractual relationship among the Holder, the Company and SPAC, and is not intended to create, and does not create, any agency, partnership, joint venture or any like relationship among the",
-        "consideration of the premises set forth above, which are incorporated in this Agreement as if fully set forth below, and intending to"
+        "(this “ Agreement ”) is made as of September 10, 2026 by and among (i) Aperture AC , a Cayman Islands exempted"
       ],
-      "body_excerpt": "This Agreement is intended to create a contractual relationship among the Holder, the Company and SPAC, and is not intended to create, and does not create, any agency, partnership, joint venture or any like relationship among the consideration of the premises set forth above, which are incorporated in this Agreement as if fully set forth below, and intending to",
+      "body_excerpt": "This Agreement is intended to create a contractual relationship among the Holder, the Company and SPAC, and is not intended to create, and does not create, any agency, partnership, joint venture or any like relationship among the (this “ Agreement ”) is made as of September 10, 2026 by and among (i) Aperture AC , a Cayman Islands exempted",
       "summary_quality": "medium",
       "summary_flags": {
         "has_amount_or_percent": false,
-        "has_date": false,
+        "has_date": true,
         "has_duration": false,
         "has_future": true,
-        "item": "1.01"
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": false
       },
       "summary_source": "EX-10",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1467760",
@@ -104,20 +114,24 @@
       "ticker": "TNONW",
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
-        "The gross proceeds from the warrant inducement are expected to be $2,872,338.58, excluding any proceeds that may be received upon the exercise of the New Warrants and before deducting financial advisor",
-        "of 858,269 shares of common stock (equal to 150% of the shares of common stock issued in connection with the exercise of the Existing Warrants) with an exercise price of $5.02 per share."
+        "Aggregate Gross Proceeds of Approximately $2,872,338 LOS GATOS, CA / ACCESS Newswire / September 11, 2026 / Tenon Medical,",
+        "The gross proceeds from the warrant inducement are expected to be $2,872,338.58, excluding any proceeds that may be received upon the exercise of the New Warrants and before deducting financial advisor"
       ],
-      "body_excerpt": "The gross proceeds from the warrant inducement are expected to be $2,872,338.58, excluding any proceeds that may be received upon the exercise of the New Warrants and before deducting financial advisor of 858,269 shares of common stock (equal to 150% of the shares of common stock issued in connection with the exercise of the Existing Warrants) with an exercise price of $5.02 per share.",
+      "body_excerpt": "Aggregate Gross Proceeds of Approximately $2,872,338 LOS GATOS, CA / ACCESS Newswire / September 11, 2026 / Tenon Medical, The gross proceeds from the warrant inducement are expected to be $2,872,338.58, excluding any proceeds that may be received upon the exercise of the New Warrants and before deducting financial advisor",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
-        "has_date": false,
+        "has_date": true,
         "has_duration": false,
         "has_future": true,
-        "item": "1.01"
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1/EX-10",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "2033770",
@@ -132,20 +146,24 @@
       "ticker": "DAICW",
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
-        "Holder of a $500,000 convertible unsecured note issued by DAIC To fund a $15 million standby equity purchase agreement and $3.0 million promissory notes pursuant to a standby equity purchase agreement to be entered into with DAIC",
-        "senior note (~$1.08M) note cancelled for 2,815,506-shares of DAIC Common retained by LHT; liens released; scheduled non-core assets conveyed in cancellation of Phillips $500,000 note; SEE ID patent retained; closes by September 30, 2026, unconditionally."
+        "senior note (~$1.08M) note cancelled for 2,815,506-shares of DAIC Common retained by LHT; liens released; scheduled non-core assets conveyed in cancellation of Phillips $500,000 note; SEE ID patent retained; closes by September 30, 2026, unconditionally.",
+        "Holder of a $500,000 convertible unsecured note issued by DAIC To fund a $15 million standby equity purchase agreement and $3.0 million promissory notes pursuant to a standby equity purchase agreement to be entered into with DAIC"
       ],
-      "body_excerpt": "Holder of a $500,000 convertible unsecured note issued by DAIC To fund a $15 million standby equity purchase agreement and $3.0 million promissory notes pursuant to a standby equity purchase agreement to be entered into with DAIC senior note (~$1.08M) note cancelled for 2,815,506-shares of DAIC Common retained by LHT; liens released; scheduled non-core assets conveyed in cancellation of Phillips $500,000 note; SEE ID patent retained; closes by September 30, 2026, unconditionally.",
+      "body_excerpt": "senior note (~$1.08M) note cancelled for 2,815,506-shares of DAIC Common retained by LHT; liens released; scheduled non-core assets conveyed in cancellation of Phillips $500,000 note; SEE ID patent retained; closes by September 30, 2026, unconditionally. Holder of a $500,000 convertible unsecured note issued by DAIC To fund a $15 million standby equity purchase agreement and $3.0 million promissory notes pursuant to a standby equity purchase agreement to be entered into with DAIC",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": true,
         "has_duration": false,
         "has_future": true,
-        "item": "1.01"
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-10",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1282648",
@@ -174,20 +192,24 @@
       "ticker": "EPRT",
       "exchange": "NYSE",
       "investor_summary_sentences": [
-        "AMENDED AND RESTATED CREDIT AGREEMENT, dated as of April 12, 2019, among ESSENTIAL PROPERTIES REALTY TRUST, INC., a Maryland corporation (the “ Parent REIT ”), ESSENTIAL PROPERTIES, L.P., a Delaware limited partnership (the “ Borrower ”), the several banks and other financial institutions or entities from time to time parties to this Agreement (the “ Lenders ”), WELLS FARGO BANK, NATIONAL ASSOCIATION, a national banking association, as administrative agent for the Lenders (in such capacity, the “ Administrative Agent ”), and WELLS FARGO SECURITIES, LLC as sustainability structuring agent (in such capacity, the “ Sustainability Structuring Agent ”). WHEREAS, the Parent REIT and the Borrower are parties to that certain $300,000,000 Revolving Credit Agreement, dated as of June 25, 2018 (as amended, supplemented or otherwise modified in writing prior to the date hereof, the “ Existing Credit Agreement ”), among the Parent REIT, the Borrower, the several banks and other financial institutions or entities parties thereto (the “ Existing Lenders ”), Barclays Bank PLC, as administrative agent, and others;",
-        "WHEREAS, the Administrative Agent and the Term Loan Lenders desire to make available to the Borrower, a term loan facility in the initial amount of $200,000,000 and a second tranche term loan facility in the initial amount of $400,000,000, on the terms and conditions contained herein; NOW, THEREFORE, in consideration of the premises and the agreements hereinafter set forth and for good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged by the parties hereto, the parties hereto hereby agree that on the Restatement Effective Date, as provided in Section 10.18 , the Existing Credit Agreement shall be amended and restated in its entirety as follows:"
+        "WHEREAS, the Administrative Agent and the Term Loan Lenders desire to make available to the Borrower, a term loan facility in the initial amount of $200,000,000 and a second tranche term loan facility in the initial amount of $400,000,000, on the terms and conditions contained herein; NOW, THEREFORE, in consideration of the premises and the agreements hereinafter set forth and for good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged by the parties hereto, the parties hereto hereby agree that on the Restatement Effective Date, as provided in Section 10.18 , the Existing Credit Agreement shall be amended and restated in its entirety as follows:",
+        "The execution, delivery and performance of this Agreement and the other Loan Documents, the issuance of Letters of Credit, the borrowings hereunder and the use of the proceeds thereof (a) will not violate any material Requirement of Law or any material Contractual Obligation of any Group Member and (b) will not result in, or require, the creation or imposition of any Lien on any of their respective properties or revenues pursuant to any Requirement of Law or any such Contractual Obligation (except, in the case of Liens on properties or assets that are not Eligible Unencumbered Assets, any such Lien that could not reasonably be expected to have a Material Adverse Effect). No Requirement of Law or Contractual Obligation applicable to any Group Member could reasonably be expected to have a Material Adverse Effect."
       ],
-      "body_excerpt": "AMENDED AND RESTATED CREDIT AGREEMENT, dated as of April 12, 2019, among ESSENTIAL PROPERTIES REALTY TRUST, INC., a Maryland corporation (the “ Parent REIT ”), ESSENTIAL PROPERTIES, L.P., a Delaware limited partnership (the “ Borrower ”), the several banks and other financial institutions or entities from time to time parties to this Agreement (the “ Lenders ”), WELLS FARGO BANK, NATIONAL ASSOCIATION, a national banking association, as administrative agent for the Lenders (in such capacity, the “ Administrative Agent ”), and WELLS FARGO SECURITIES, LLC as sustainability structuring agent (in such capacity, the “ Sustainability Structuring Agent ”). WHEREAS, the Parent REIT and the Borrower are parties to that certain $300,000,000 Revolving Credit Agreement, dated as of June 25, 2018 (as amended, supplemented or otherwise modified in writing prior to the date hereof, the “ Existing Credit Agreement ”), among the Parent REIT, the Borrower, the several banks and other financial institutions or entities parties thereto (the “ Existing Lenders ”), Barclays Bank PLC, as administrative agent, and others; WHEREAS, the Administrative Agent and the Term Loan Lenders desire to make available to the Borrower, a term loan facility in the initial amount of $200,000,000 and a second tranche term loan facility in the initial amount of $400,000,000, on the terms and conditions contained herein; NOW, THEREFORE, in consideration of the premises and the agreements hereinafter set forth and for good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged by the parties hereto, the parties hereto hereby agree that on the Restatement Effective Date, as provided in Section 10.18 , the Existing Credit Agreement shall be amended and restated in its entirety as follows:",
+      "body_excerpt": "WHEREAS, the Administrative Agent and the Term Loan Lenders desire to make available to the Borrower, a term loan facility in the initial amount of $200,000,000 and a second tranche term loan facility in the initial amount of $400,000,000, on the terms and conditions contained herein; NOW, THEREFORE, in consideration of the premises and the agreements hereinafter set forth and for good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged by the parties hereto, the parties hereto hereby agree that on the Restatement Effective Date, as provided in Section 10.18 , the Existing Credit Agreement shall be amended and restated in its entirety as follows: The execution, delivery and performance of this Agreement and the other Loan Documents, the issuance of Letters of Credit, the borrowings hereunder and the use of the proceeds thereof (a) will not violate any material Requirement of Law or any material Contractual Obligation of any Group Member and (b) will not result in, or require, the creation or imposition of any Lien on any of their respective properties or revenues pursuant to any Requirement of Law or any such Contractual Obligation (except, in the case of Liens on properties or assets that are not Eligible Unencumbered Assets, any such Lien that could not reasonably be expected to have a Material Adverse Effect). No Requirement of Law or Contractual Obligation applicable to any Group Member could reasonably be expected to have a Material Adverse Effect.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
-        "has_date": true,
+        "has_date": false,
         "has_duration": false,
-        "has_future": false,
-        "item": "1.01"
+        "has_future": true,
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-10",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1582554",
@@ -216,20 +238,24 @@
       "ticker": "CLNN",
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
-        "$4 million registered direct offering priced at market under Nasdaq rules Proceeds are expected to be sufficient to fund the Company to mid-first quarter 2027",
-        "(Nasdaq: CLNN), a clinical-stage biotechnology company focused on ALS, today announced the pricing of a registered direct offering of 1,219,513 shares at a purchase price of $3.28 per share to existing shareholders, including insiders, with total gross proceeds of $4 million. The offering is expected to close on September 17, 2026."
+        "(Nasdaq: CLNN), a clinical-stage biotechnology company focused on ALS, today announced the pricing of a registered direct offering of 1,219,513 shares at a purchase price of $3.28 per share to existing shareholders, including insiders, with total gross proceeds of $4 million. The offering is expected to close on September 17, 2026.",
+        "$4 million registered direct offering priced at market under Nasdaq rules Proceeds are expected to be sufficient to fund the Company to mid-first quarter 2027"
       ],
-      "body_excerpt": "$4 million registered direct offering priced at market under Nasdaq rules Proceeds are expected to be sufficient to fund the Company to mid-first quarter 2027 (Nasdaq: CLNN), a clinical-stage biotechnology company focused on ALS, today announced the pricing of a registered direct offering of 1,219,513 shares at a purchase price of $3.28 per share to existing shareholders, including insiders, with total gross proceeds of $4 million. The offering is expected to close on September 17, 2026.",
+      "body_excerpt": "(Nasdaq: CLNN), a clinical-stage biotechnology company focused on ALS, today announced the pricing of a registered direct offering of 1,219,513 shares at a purchase price of $3.28 per share to existing shareholders, including insiders, with total gross proceeds of $4 million. The offering is expected to close on September 17, 2026. $4 million registered direct offering priced at market under Nasdaq rules Proceeds are expected to be sufficient to fund the Company to mid-first quarter 2027",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": true,
         "has_duration": false,
         "has_future": true,
-        "item": "1.01"
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-10",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1860871",
@@ -258,19 +284,23 @@
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
         "value and liquidity of the DataMEDS common stock received as consideration; the risk that anticipated benefits of the transaction are not realized; the Company’s ability to generate and grow Compute Services revenue; the highly volatile and unpredictable price",
-        "note of DataMEDS for a total purchase value of $1.5 million."
+        "note of DataMEDS for a total purchase value of $1.5 million. DataMEDS received the Helomics CLIA/CAP-certified clinical laboratory, inclusive"
       ],
-      "body_excerpt": "value and liquidity of the DataMEDS common stock received as consideration; the risk that anticipated benefits of the transaction are not realized; the Company’s ability to generate and grow Compute Services revenue; the highly volatile and unpredictable price note of DataMEDS for a total purchase value of $1.5 million.",
+      "body_excerpt": "value and liquidity of the DataMEDS common stock received as consideration; the risk that anticipated benefits of the transaction are not realized; the Company’s ability to generate and grow Compute Services revenue; the highly volatile and unpredictable price note of DataMEDS for a total purchase value of $1.5 million. DataMEDS received the Helomics CLIA/CAP-certified clinical laboratory, inclusive",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": false,
         "has_duration": false,
         "has_future": true,
-        "item": "1.01"
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "895419",
@@ -285,20 +315,24 @@
       "ticker": "WOLF",
       "exchange": "NYSE",
       "investor_summary_sentences": [
-        "warrant to purchase up to 4,943,555 shares of New Common Stock at an exercise price of $23.95 per share (“Renesas Warrants”), which became exercisable on January 29, 2026, upon receipt of Regulatory Approvals, and (c) 16,852,372 shares of New Common Stock from the Share Reserve (“Renesas Base Consideration Shares”), as defined in the Plan (“Forward Equity Contract”), the issuance of which was subject to Regulatory Approvals.",
-        "If Regulatory Approvals were not obtained prior to the Regulatory Trigger Deadline, the Contingent Cash was to be distributed to Renesas. However, as Regulatory Approvals were received by the Regulatory Trigger Deadline, the Contingent Cash was distributed (i) $10.0 million to Wolfspeed and (ii) $5.0 million to Senior Secured Note claimholders."
+        "If Regulatory Approvals were not obtained prior to the Regulatory Trigger Deadline, the Contingent Cash was to be distributed to Renesas. However, as Regulatory Approvals were received by the Regulatory Trigger Deadline, the Contingent Cash was distributed (i) $10.0 million to Wolfspeed and (ii) $5.0 million to Senior Secured Note claimholders.",
+        "Deadline, as defined in the Plan, Renesas would have received an additional 871,287 shares of New Common Stock from the Share Reserve. However, if Regulatory Approvals were received by the Regulatory Trigger Deadline, existing equity holders would"
       ],
-      "body_excerpt": "warrant to purchase up to 4,943,555 shares of New Common Stock at an exercise price of $23.95 per share (“Renesas Warrants”), which became exercisable on January 29, 2026, upon receipt of Regulatory Approvals, and (c) 16,852,372 shares of New Common Stock from the Share Reserve (“Renesas Base Consideration Shares”), as defined in the Plan (“Forward Equity Contract”), the issuance of which was subject to Regulatory Approvals. If Regulatory Approvals were not obtained prior to the Regulatory Trigger Deadline, the Contingent Cash was to be distributed to Renesas. However, as Regulatory Approvals were received by the Regulatory Trigger Deadline, the Contingent Cash was distributed (i) $10.0 million to Wolfspeed and (ii) $5.0 million to Senior Secured Note claimholders.",
+      "body_excerpt": "If Regulatory Approvals were not obtained prior to the Regulatory Trigger Deadline, the Contingent Cash was to be distributed to Renesas. However, as Regulatory Approvals were received by the Regulatory Trigger Deadline, the Contingent Cash was distributed (i) $10.0 million to Wolfspeed and (ii) $5.0 million to Senior Secured Note claimholders. Deadline, as defined in the Plan, Renesas would have received an additional 871,287 shares of New Common Stock from the Share Reserve. However, if Regulatory Approvals were received by the Regulatory Trigger Deadline, existing equity holders would",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
-        "has_date": true,
+        "has_date": false,
         "has_duration": false,
         "has_future": true,
-        "item": "8.01"
+        "item": "8.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "8.01"
+      "summary_item": "8.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "2114229",
@@ -313,20 +347,24 @@
       "ticker": "XIIIU",
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
-        "a merger, amalgamation, share exchange, asset acquisition, share purchase, reorganization or similar business combination with one or It may pursue an initial business combination target in any business or industry.",
-        "PRESS RELEASE DATED SEPTEMBER 16, 2026"
+        "Capital Corp XIII (Nasdaq: XIIIU) (the “ Company ”) announced today that, commencing September 18, 2026, holders of the",
+        "“believe,” “continue,” “could,” “estimate,” “expect,” “intend,” “may,” “might,” “plan,” “possible,” “potential,” “predict,” “project,”"
       ],
-      "body_excerpt": "a merger, amalgamation, share exchange, asset acquisition, share purchase, reorganization or similar business combination with one or It may pursue an initial business combination target in any business or industry. PRESS RELEASE DATED SEPTEMBER 16, 2026",
+      "body_excerpt": "Capital Corp XIII (Nasdaq: XIIIU) (the “ Company ”) announced today that, commencing September 18, 2026, holders of the “believe,” “continue,” “could,” “estimate,” “expect,” “intend,” “may,” “might,” “plan,” “possible,” “potential,” “predict,” “project,”",
       "summary_quality": "medium",
       "summary_flags": {
         "has_amount_or_percent": false,
         "has_date": true,
         "has_duration": false,
         "has_future": true,
-        "item": "8.01"
+        "item": "8.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "8.01"
+      "summary_item": "8.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1513525",
@@ -341,20 +379,24 @@
       "ticker": "ADIL",
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
-        "Preferred Stock, $0.001 par value; 5,000,000 shares authorized as of June 30, 2026, actual and pro forma. Common Stock, $0.001 par value; 100,000,000 shares authorized, 2,625,890 shares issued and outstanding at June 30, 2026, actual; 100,000,000 shares authorized, 15,556,507 shares issued and outstanding at June 30, 2026, pro forma.",
-        "“Purchase Agreement”), dated June 11, 2026, entered into by the Company with certain accredited investors (the “PIPE Investors”) and certain Note Exchange Agreements (the “Exchange Agreements”), dated June 11, 2026, entered into by the"
+        "2 to Securities Purchase Agreement (this “Amendment” ) is entered into as of September 16, 2026, by and among Adial Pharmaceuticals, Inc.",
+        "On September 16, 2026, the Company entered into 2 to the Purchase Agreement (the “Purchase Agreement Amendment”) with certain PIPE Investors, constituting"
       ],
-      "body_excerpt": "Preferred Stock, $0.001 par value; 5,000,000 shares authorized as of June 30, 2026, actual and pro forma. Common Stock, $0.001 par value; 100,000,000 shares authorized, 2,625,890 shares issued and outstanding at June 30, 2026, actual; 100,000,000 shares authorized, 15,556,507 shares issued and outstanding at June 30, 2026, pro forma. “Purchase Agreement”), dated June 11, 2026, entered into by the Company with certain accredited investors (the “PIPE Investors”) and certain Note Exchange Agreements (the “Exchange Agreements”), dated June 11, 2026, entered into by the",
-      "summary_quality": "high",
+      "body_excerpt": "2 to Securities Purchase Agreement (this “Amendment” ) is entered into as of September 16, 2026, by and among Adial Pharmaceuticals, Inc. On September 16, 2026, the Company entered into 2 to the Purchase Agreement (the “Purchase Agreement Amendment”) with certain PIPE Investors, constituting",
+      "summary_quality": "medium",
       "summary_flags": {
-        "has_amount_or_percent": true,
+        "has_amount_or_percent": false,
         "has_date": true,
         "has_duration": false,
         "has_future": false,
-        "item": "1.01"
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1/EX-10",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1576873",
@@ -370,19 +412,23 @@
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
         "Revenue grew 407%, cost of goods sold increased by only 67% to $24.8 million, compared to $14.9 million in fiscal year 2025, reflecting the implementation of numerous facility-wide",
-        "balance increased to $49.5 million as of June 30, 2026, compared to $7.5 million as of June assets increased to $132.8 million, compared to $84.5 million as of June 30, 2025"
+        "Series C Preferred Stock Authorized: 66,667 preferred shares, par value of $10.00 per share; Issued and outstanding: nil preferred shares Series D Preferred Stock Authorized: 5 preferred shares, par value of $0.001 per share; Issued and outstanding: nil preferred shares"
       ],
-      "body_excerpt": "Revenue grew 407%, cost of goods sold increased by only 67% to $24.8 million, compared to $14.9 million in fiscal year 2025, reflecting the implementation of numerous facility-wide balance increased to $49.5 million as of June 30, 2026, compared to $7.5 million as of June assets increased to $132.8 million, compared to $84.5 million as of June 30, 2025",
+      "body_excerpt": "Revenue grew 407%, cost of goods sold increased by only 67% to $24.8 million, compared to $14.9 million in fiscal year 2025, reflecting the implementation of numerous facility-wide Series C Preferred Stock Authorized: 66,667 preferred shares, par value of $10.00 per share; Issued and outstanding: nil preferred shares Series D Preferred Stock Authorized: 5 preferred shares, par value of $0.001 per share; Issued and outstanding: nil preferred shares",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
-        "has_date": true,
+        "has_date": false,
         "has_duration": false,
         "has_future": false,
-        "item": "2.02"
+        "item": "2.02",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "2.02"
+      "summary_item": "2.02",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1549084",
@@ -397,20 +443,24 @@
       "ticker": "CHRN",
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
-        "Borrower delivered to Lender that certain Secured Promissory Note and Security Agreement, dated as of September 12, 2025, in favor of Lender in the principal sum of TWO MILLION AND 00/100 UNITED STATES DOLLARS ($2,000,000.00) (the “ Note ”);",
-        "First Amendment to Secured Promissory Note and Security Agreement (this “ Amendment ”) is entered into as of September 12, 2026 by and among CHRONOSCALE INTERMEDIATE, LLC (f/k/a EKSO BIONICS HOLDINGS, INC.), a Nevada limited liability"
+        "First Amendment to Secured Promissory Note and Security Agreement (this “ Amendment ”) is entered into as of September 12, 2026 by and among CHRONOSCALE INTERMEDIATE, LLC (f/k/a EKSO BIONICS HOLDINGS, INC.), a Nevada limited liability",
+        "Note on the date hereof is $2,000,000.00; (b) no defenses, offsets, claims, or counterclaims whatsoever exist to the punctual performance of all obligations and the full payment of all amounts due under the Note and the other Loan Documents executed in connection therewith;"
       ],
-      "body_excerpt": "Borrower delivered to Lender that certain Secured Promissory Note and Security Agreement, dated as of September 12, 2025, in favor of Lender in the principal sum of TWO MILLION AND 00/100 UNITED STATES DOLLARS ($2,000,000.00) (the “ Note ”); First Amendment to Secured Promissory Note and Security Agreement (this “ Amendment ”) is entered into as of September 12, 2026 by and among CHRONOSCALE INTERMEDIATE, LLC (f/k/a EKSO BIONICS HOLDINGS, INC.), a Nevada limited liability",
+      "body_excerpt": "First Amendment to Secured Promissory Note and Security Agreement (this “ Amendment ”) is entered into as of September 12, 2026 by and among CHRONOSCALE INTERMEDIATE, LLC (f/k/a EKSO BIONICS HOLDINGS, INC.), a Nevada limited liability Note on the date hereof is $2,000,000.00; (b) no defenses, offsets, claims, or counterclaims whatsoever exist to the punctual performance of all obligations and the full payment of all amounts due under the Note and the other Loan Documents executed in connection therewith;",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": true,
         "has_duration": false,
         "has_future": false,
-        "item": "1.01"
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-10",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1419554",
@@ -475,10 +525,14 @@
         "has_date": true,
         "has_duration": false,
         "has_future": false,
-        "item": "8.01"
+        "item": "8.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "8.01"
+      "summary_item": "8.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1306830",
@@ -519,20 +573,24 @@
       "ticker": "ACDC",
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
-        "that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement, dated as of December 27, 2023 (the “ Credit Agreement ”), by and among Alpine Holding II, LLC, a Delaware limited",
-        "which was determined by dividing (x) $34,320,000 by (y) the VWAP Price (as defined below), in exchange for THRC’s agreement that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement,"
+        "which was determined by dividing (x) $34,320,000 by (y) the VWAP Price (as defined below), in exchange for THRC’s agreement that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement,",
+        "is made as of September 11, 2026 (the “ Effective Date ”), by and among THRC Holdings, LP, a Texas limited partnership"
       ],
-      "body_excerpt": "that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement, dated as of December 27, 2023 (the “ Credit Agreement ”), by and among Alpine Holding II, LLC, a Delaware limited which was determined by dividing (x) $34,320,000 by (y) the VWAP Price (as defined below), in exchange for THRC’s agreement that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement,",
-      "summary_quality": "high",
+      "body_excerpt": "which was determined by dividing (x) $34,320,000 by (y) the VWAP Price (as defined below), in exchange for THRC’s agreement that its $34,320,000 of Term Loans (the “ Subject Loans ”) under and as defined in that certain Term Loan Credit Agreement, is made as of September 11, 2026 (the “ Effective Date ”), by and among THRC Holdings, LP, a Texas limited partnership",
+      "summary_quality": "medium",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": true,
         "has_duration": false,
         "has_future": false,
-        "item": "1.01"
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": false
       },
       "summary_source": "EX-10",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1228454",
@@ -548,19 +606,23 @@
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
         "$50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter. above items, we currently expect to record a net loss for the third quarter of 2026 in the range of $126.2 million to $136.1 million.",
-        "of approximately $70 million, in each case as of June 30, 2026. Accordingly, the aggregate of approximately $96 million of commercial real estate loans and the cannabis related loans marketed for sale are expected to be transferred to"
+        "third quarter of 2026, the Company determined that it is more likely than not that the net deferred tax assets will not be realized and therefore recorded a valuation allowance against its entire net deferred tax asset balance of approximately $50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter."
       ],
-      "body_excerpt": "$50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter. above items, we currently expect to record a net loss for the third quarter of 2026 in the range of $126.2 million to $136.1 million. of approximately $70 million, in each case as of June 30, 2026. Accordingly, the aggregate of approximately $96 million of commercial real estate loans and the cannabis related loans marketed for sale are expected to be transferred to",
+      "body_excerpt": "$50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter. above items, we currently expect to record a net loss for the third quarter of 2026 in the range of $126.2 million to $136.1 million. third quarter of 2026, the Company determined that it is more likely than not that the net deferred tax assets will not be realized and therefore recorded a valuation allowance against its entire net deferred tax asset balance of approximately $50 million for the quarter ended September 30, 2026, which will adversely affect results of operations for the quarter.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": true,
         "has_duration": false,
         "has_future": true,
-        "item": "8.01"
+        "item": "8.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "8.01"
+      "summary_item": "8.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1562733",
@@ -616,19 +678,23 @@
       "exchange": "NYSE",
       "investor_summary_sentences": [
         "Responsible Portfolio Growth 13 Portfolio Growth Trend ($ in millions) Average FICO relatively consistent YoY and over the last several quarters Achieved 9.6% YoY portfolio growth from large loans including high-quality auto-secured loans and new branch openings Auto-secured product portfolio grew $78.1MM to 15.1% of the total portfolio, compared to 12.5% in the prior-year period New branches opened since 2Q 25 have generated $12.3MM, or 6.6%, of total YoY portfolio growth Quarterly Origination Trend ($ in millions) 14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income",
-        "Operating Expense Ratio ($ in millions) Operating expense ratio of 12.4% improved 80 bps YoY, despite investment in technology, digital capabilities, and growth, including 12 new branches opened since 2Q 25 YoY total revenue growth outpaced G&A expense growth by 4.2x Investing for Long Term Growth While Maintaining Expense Discipline 16 Total unused capacity was $442MM (subject to borrowing base) as of June 30, 2026 Available liquidity of $128MM as of June 30, 2026 Fixed-rate debt represented 80% of total debt as of June 30, 2026, with WAC of 4.8% Strong Funding Profile Unused Capacity ($ in millions) Fixed vs."
+        "14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income Recent Credit Trends 30+ & 90+ DQ % ($ in millions) Net Credit Loss Rates 15 2Q 26 delinquency rate of 7.0% decreased sequentially 20 bps and increased 40 bps YoY."
       ],
-      "body_excerpt": "Responsible Portfolio Growth 13 Portfolio Growth Trend ($ in millions) Average FICO relatively consistent YoY and over the last several quarters Achieved 9.6% YoY portfolio growth from large loans including high-quality auto-secured loans and new branch openings Auto-secured product portfolio grew $78.1MM to 15.1% of the total portfolio, compared to 12.5% in the prior-year period New branches opened since 2Q 25 have generated $12.3MM, or 6.6%, of total YoY portfolio growth Quarterly Origination Trend ($ in millions) 14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income Operating Expense Ratio ($ in millions) Operating expense ratio of 12.4% improved 80 bps YoY, despite investment in technology, digital capabilities, and growth, including 12 new branches opened since 2Q 25 YoY total revenue growth outpaced G&A expense growth by 4.2x Investing for Long Term Growth While Maintaining Expense Discipline 16 Total unused capacity was $442MM (subject to borrowing base) as of June 30, 2026 Available liquidity of $128MM as of June 30, 2026 Fixed-rate debt represented 80% of total debt as of June 30, 2026, with WAC of 4.8% Strong Funding Profile Unused Capacity ($ in millions) Fixed vs.",
-      "summary_quality": "high",
+      "body_excerpt": "Responsible Portfolio Growth 13 Portfolio Growth Trend ($ in millions) Average FICO relatively consistent YoY and over the last several quarters Achieved 9.6% YoY portfolio growth from large loans including high-quality auto-secured loans and new branch openings Auto-secured product portfolio grew $78.1MM to 15.1% of the total portfolio, compared to 12.5% in the prior-year period New branches opened since 2Q 25 have generated $12.3MM, or 6.6%, of total YoY portfolio growth Quarterly Origination Trend ($ in millions) 14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income 14 Revenue Up 6.7% on Receivable Growth Total Revenue and Interest & Fee Yields Total Revenue ($ in millions) Revenue grew 6.7% YoY due to $202MM increase in ANR Total revenue yield down 110 bps YoY, primarily due to a mix shift toward larger loans and auto-secured products, which typically carry lower yields and lower loss rates Total revenue yield up 30 bps sequentially, primarily reflecting seasonality and a full quarter of bank partnership fee income, offset by lower insurance income Recent Credit Trends 30+ & 90+ DQ % ($ in millions) Net Credit Loss Rates 15 2Q 26 delinquency rate of 7.0% decreased sequentially 20 bps and increased 40 bps YoY.",
+      "summary_quality": "medium",
       "summary_flags": {
         "has_amount_or_percent": true,
-        "has_date": true,
+        "has_date": false,
         "has_duration": false,
         "has_future": false,
-        "item": "7.01"
+        "item": "7.01",
+        "freshness_checked": true,
+        "has_current_action": false
       },
       "summary_source": "EX-99.1",
-      "summary_item": "7.01"
+      "summary_item": "7.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1418135",
@@ -653,10 +719,14 @@
         "has_date": true,
         "has_duration": false,
         "has_future": false,
-        "item": "8.01"
+        "item": "8.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "8.01"
+      "summary_item": "8.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "2035644",
@@ -686,19 +756,23 @@
       "exchange": "NYSE",
       "investor_summary_sentences": [
         "13, 2026 to September 16, 2026. The effect of the Amendment is to terminate the Rights Plan at the close of business today.",
-        "FOR RELEASE: September 16, 2026"
+        "shareholder rights plan (the “Rights Plan”) pursuant to which the final expiration date has been accelerated from October 13, 2026 to September 16, 2026."
       ],
-      "body_excerpt": "13, 2026 to September 16, 2026. The effect of the Amendment is to terminate the Rights Plan at the close of business today. FOR RELEASE: September 16, 2026",
+      "body_excerpt": "13, 2026 to September 16, 2026. The effect of the Amendment is to terminate the Rights Plan at the close of business today. shareholder rights plan (the “Rights Plan”) pursuant to which the final expiration date has been accelerated from October 13, 2026 to September 16, 2026.",
       "summary_quality": "medium",
       "summary_flags": {
         "has_amount_or_percent": false,
         "has_date": true,
         "has_duration": false,
         "has_future": true,
-        "item": "1.01"
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1419275",
@@ -740,19 +814,23 @@
       "exchange": "NASDAQ",
       "investor_summary_sentences": [
         "● Full year revenue was $4.5 million, compared to $4.7 million in the prior year, and was primarily from ● Net loss was $9.2 million, or ($0.52) per basic and diluted share, compared to a net loss of $3.0 million,",
-        "● Adjusted EBITDA loss was $2.9 million, compared to a loss of $0.1 million in the same period last year."
+        "2026, compared to $37.8 million in the prior quarter. ● Aeluma raised $20.1 million in net proceeds from the original issuance of 830,484 shares at an average"
       ],
-      "body_excerpt": "● Full year revenue was $4.5 million, compared to $4.7 million in the prior year, and was primarily from ● Net loss was $9.2 million, or ($0.52) per basic and diluted share, compared to a net loss of $3.0 million, ● Adjusted EBITDA loss was $2.9 million, compared to a loss of $0.1 million in the same period last year.",
+      "body_excerpt": "● Full year revenue was $4.5 million, compared to $4.7 million in the prior year, and was primarily from ● Net loss was $9.2 million, or ($0.52) per basic and diluted share, compared to a net loss of $3.0 million, 2026, compared to $37.8 million in the prior quarter. ● Aeluma raised $20.1 million in net proceeds from the original issuance of 830,484 shares at an average",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": false,
         "has_duration": false,
         "has_future": false,
-        "item": "2.02"
+        "item": "2.02",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "2.02"
+      "summary_item": "2.02",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "920760",
@@ -767,20 +845,24 @@
       "ticker": "LEN-B",
       "exchange": "NYSE",
       "investor_summary_sentences": [
-        "Revenues from home sales decreased 6% in the third quarter of 2026 to $7.7 billion from $8.2 billion in the third quarter of 2025. Revenues were lower primarily due to both a 3% decrease in the average sales price of homes and a 3% decrease in the number of home deliveries.",
-        "Gross margins on home sales were $1.2 billion, or 15.8%, in the third quarter of 2026, compared to $1.4 billion, or 17.5%, in the third quarter of 2025. During the third quarter of 2026, gross margins decreased primarily due to lower revenue per square foot and higher land costs year over year, which were partially offset by a decrease in construction costs, reflecting the Company's continued focus on cost-saving initiatives."
+        "“Looking ahead to the fourth quarter of 2026, we expect to generate new orders of approximately 19,500 to 20,500 homes, and to deliver approximately 22,000 to 23,000 homes with gross margin of approximately 15.5% to 16.0%. We expect our average sales price to be in the range of approximately $370,000 to $380,000 and our SG&A to improve toward 8.7% to 9.0%.",
+        "Revenues from home sales decreased 6% in the third quarter of 2026 to $7.7 billion from $8.2 billion in the third quarter of 2025. Revenues were lower primarily due to both a 3% decrease in the average sales price of homes and a 3% decrease in the number of home deliveries."
       ],
-      "body_excerpt": "Revenues from home sales decreased 6% in the third quarter of 2026 to $7.7 billion from $8.2 billion in the third quarter of 2025. Revenues were lower primarily due to both a 3% decrease in the average sales price of homes and a 3% decrease in the number of home deliveries. Gross margins on home sales were $1.2 billion, or 15.8%, in the third quarter of 2026, compared to $1.4 billion, or 17.5%, in the third quarter of 2025. During the third quarter of 2026, gross margins decreased primarily due to lower revenue per square foot and higher land costs year over year, which were partially offset by a decrease in construction costs, reflecting the Company's continued focus on cost-saving initiatives.",
+      "body_excerpt": "“Looking ahead to the fourth quarter of 2026, we expect to generate new orders of approximately 19,500 to 20,500 homes, and to deliver approximately 22,000 to 23,000 homes with gross margin of approximately 15.5% to 16.0%. We expect our average sales price to be in the range of approximately $370,000 to $380,000 and our SG&A to improve toward 8.7% to 9.0%. Revenues from home sales decreased 6% in the third quarter of 2026 to $7.7 billion from $8.2 billion in the third quarter of 2025. Revenues were lower primarily due to both a 3% decrease in the average sales price of homes and a 3% decrease in the number of home deliveries.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": true,
         "has_duration": false,
-        "has_future": false,
-        "item": "2.02"
+        "has_future": true,
+        "item": "2.02",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "2.02"
+      "summary_item": "2.02",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1679273",
@@ -824,7 +906,9 @@
       "summary_quality": "low",
       "summary_flags": {},
       "summary_source": "EX-99.1",
-      "summary_item": "8.01"
+      "summary_item": "8.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1544227",
@@ -867,20 +951,24 @@
       "ticker": "EPRT",
       "exchange": "NYSE",
       "investor_summary_sentences": [
-        "As of December 31, 2025, 91.5% of our approximately $555 million of annualized base rent (“ABR”) was attributable to properties operated by tenants in service-oriented and experience-based businesses. In 2025, we completed $1.3 billion of gross investments in 270 properties in 115 transactions at a weighted average cash cap rate of 7.7%, the highest level of annual gross investments in the Company’s history.",
+        "In 2025, we completed $1.3 billion of gross investments in 270 properties in 115 transactions at a weighted average cash cap rate of 7.7%, the highest level of annual gross investments in the Company’s history. Our primary business objective is to maximize shareholder value by generating attractive, risk- adjusted returns through the acquisition, ownership, management, and growth of a diversified portfolio of commercially desirable properties that provides a growing stream of earnings and dividends.",
         "During 2025, EPRT contributed $20,000 to charitable organizations supporting our local communities, veterans, and underserved youth. OUR 2025 COMMUNITY PARTNERS Capital Area YMCA EPRT provided $5,000 in sponsorship support for the YMCA’s annual golf and run/walk events, helping support community programs focused on youth development, healthy living, and individuals and families in need."
       ],
-      "body_excerpt": "As of December 31, 2025, 91.5% of our approximately $555 million of annualized base rent (“ABR”) was attributable to properties operated by tenants in service-oriented and experience-based businesses. In 2025, we completed $1.3 billion of gross investments in 270 properties in 115 transactions at a weighted average cash cap rate of 7.7%, the highest level of annual gross investments in the Company’s history. During 2025, EPRT contributed $20,000 to charitable organizations supporting our local communities, veterans, and underserved youth. OUR 2025 COMMUNITY PARTNERS Capital Area YMCA EPRT provided $5,000 in sponsorship support for the YMCA’s annual golf and run/walk events, helping support community programs focused on youth development, healthy living, and individuals and families in need.",
+      "body_excerpt": "In 2025, we completed $1.3 billion of gross investments in 270 properties in 115 transactions at a weighted average cash cap rate of 7.7%, the highest level of annual gross investments in the Company’s history. Our primary business objective is to maximize shareholder value by generating attractive, risk- adjusted returns through the acquisition, ownership, management, and growth of a diversified portfolio of commercially desirable properties that provides a growing stream of earnings and dividends. During 2025, EPRT contributed $20,000 to charitable organizations supporting our local communities, veterans, and underserved youth. OUR 2025 COMMUNITY PARTNERS Capital Area YMCA EPRT provided $5,000 in sponsorship support for the YMCA’s annual golf and run/walk events, helping support community programs focused on youth development, healthy living, and individuals and families in need.",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
-        "has_date": true,
+        "has_date": false,
         "has_duration": false,
         "has_future": false,
-        "item": "7.01"
+        "item": "7.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "primary",
-      "summary_item": "7.01"
+      "summary_item": "7.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1393311",
@@ -909,20 +997,24 @@
       "ticker": "CPRI",
       "exchange": "NYSE",
       "investor_summary_sentences": [
-        "statements involve known and unknown risks and uncertainties that could significantly affect expected results and are based on certain",
-        "events and are therefore subject to risks and uncertainties which could cause actual results to differ materially from the future results"
+        "Without limitation, any statements preceded or followed by or that include the words “plans”, “believes”, expects”, “intends”, “will”, “should”, “could”, “would”,",
+        "Capri Holdings Limited (NYSE: CPRI), a global fashion luxury group, today announced the appointment of Catherine So as Chief Legal and Sustainability Officer, effective October 19, 2026."
       ],
-      "body_excerpt": "statements involve known and unknown risks and uncertainties that could significantly affect expected results and are based on certain events and are therefore subject to risks and uncertainties which could cause actual results to differ materially from the future results",
+      "body_excerpt": "Without limitation, any statements preceded or followed by or that include the words “plans”, “believes”, expects”, “intends”, “will”, “should”, “could”, “would”, Capri Holdings Limited (NYSE: CPRI), a global fashion luxury group, today announced the appointment of Catherine So as Chief Legal and Sustainability Officer, effective October 19, 2026.",
       "summary_quality": "medium",
       "summary_flags": {
         "has_amount_or_percent": false,
-        "has_date": false,
+        "has_date": true,
         "has_duration": false,
         "has_future": true,
-        "item": "8.01"
+        "item": "8.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "8.01"
+      "summary_item": "8.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "2030954",
@@ -961,10 +1053,14 @@
         "has_date": false,
         "has_duration": true,
         "has_future": true,
-        "item": "8.01"
+        "item": "8.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "8.01"
+      "summary_item": "8.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "930420",
@@ -1003,10 +1099,14 @@
         "has_date": true,
         "has_duration": false,
         "has_future": true,
-        "item": "8.01"
+        "item": "8.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "8.01"
+      "summary_item": "8.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1774170",
@@ -1060,20 +1160,24 @@
       "ticker": "GHI",
       "exchange": "NYSE",
       "investor_summary_sentences": [
-        "The Partnership expects and believes the interest earned on these mortgage revenue bonds is excludable from gross income for federal income tax purposes. The Partnership seeks to achieve its investment growth strategy by investing in additional mortgage revenue bonds and other investments as permitted by its Second Amended and Restated Limited Partnership Agreement, dated December 5, 2022, (the “Partnership Agreement”) , taking",
-        "The Partnership is pursuing a business strategy of acquiring additional mortgage revenue bonds and other investments on a leveraged basis. The Partnership expects and believes the interest earned on these mortgage revenue bonds is excludable from gross income for federal income tax purposes."
+        "Omaha, Nebraska – On September 16, 2026, Greystone Housing Impact Investors LP (NYSE: GHI) (the “Partnership”) announced that the Board of Managers of Greystone AF Manager LLC (“Greystone Manager”) declared a cash distribution to the Partnership’s Beneficial Unit Certificate (“BUC”) holders of $0.14 per BUC. The cash distribution will be paid on October 30, 2026 to all BUC holders of record as of the close of trading on September 30, 2026.",
+        "The cash distribution will be paid on October 30, 2026 to all BUC holders of record as of the close of trading on September 30, 2026. The BUCs will trade ex-distribution as of September 30, 2026."
       ],
-      "body_excerpt": "The Partnership expects and believes the interest earned on these mortgage revenue bonds is excludable from gross income for federal income tax purposes. The Partnership seeks to achieve its investment growth strategy by investing in additional mortgage revenue bonds and other investments as permitted by its Second Amended and Restated Limited Partnership Agreement, dated December 5, 2022, (the “Partnership Agreement”) , taking The Partnership is pursuing a business strategy of acquiring additional mortgage revenue bonds and other investments on a leveraged basis. The Partnership expects and believes the interest earned on these mortgage revenue bonds is excludable from gross income for federal income tax purposes.",
-      "summary_quality": "medium",
+      "body_excerpt": "Omaha, Nebraska – On September 16, 2026, Greystone Housing Impact Investors LP (NYSE: GHI) (the “Partnership”) announced that the Board of Managers of Greystone AF Manager LLC (“Greystone Manager”) declared a cash distribution to the Partnership’s Beneficial Unit Certificate (“BUC”) holders of $0.14 per BUC. The cash distribution will be paid on October 30, 2026 to all BUC holders of record as of the close of trading on September 30, 2026. The cash distribution will be paid on October 30, 2026 to all BUC holders of record as of the close of trading on September 30, 2026. The BUCs will trade ex-distribution as of September 30, 2026.",
+      "summary_quality": "high",
       "summary_flags": {
-        "has_amount_or_percent": false,
+        "has_amount_or_percent": true,
         "has_date": true,
         "has_duration": false,
-        "has_future": true,
-        "item": "8.01"
+        "has_future": false,
+        "item": "8.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "EX-99.1",
-      "summary_item": "8.01"
+      "summary_item": "8.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "887396",
@@ -1088,20 +1192,24 @@
       "ticker": "EP",
       "exchange": "NYSE",
       "investor_summary_sentences": [
-        "Issue Date ”), is designated as Promissory Note due March 10, 2028, in the original aggregate principal amount of Three Million Two Hundred Fifty Thousand Dollars ($3,250,000) (this “ Note ”).",
-        "equal to Two Dollars and 838/1,000 ($2.838) (the “ Conversion Price ”), at the option of the Investor, at any time and from time to time from the period beginning on November 9, 2026 and ending on the Maturity Date."
+        "equal to Two Dollars and 838/1,000 ($2.838) (the “ Conversion Price ”), at the option of the Investor, at any time and from time to time from the period beginning on November 9, 2026 and ending on the Maturity Date.",
+        "“ Investor ”), the principal sum of Three Million Two Hundred Fifty Thousand Dollars ($3,250,000), plus any and all accrued but unpaid interest thereon, in cash on March 10, 2028 (subject to Section 9, the “ Maturity Date ”)."
       ],
-      "body_excerpt": "Issue Date ”), is designated as Promissory Note due March 10, 2028, in the original aggregate principal amount of Three Million Two Hundred Fifty Thousand Dollars ($3,250,000) (this “ Note ”). equal to Two Dollars and 838/1,000 ($2.838) (the “ Conversion Price ”), at the option of the Investor, at any time and from time to time from the period beginning on November 9, 2026 and ending on the Maturity Date.",
+      "body_excerpt": "equal to Two Dollars and 838/1,000 ($2.838) (the “ Conversion Price ”), at the option of the Investor, at any time and from time to time from the period beginning on November 9, 2026 and ending on the Maturity Date. “ Investor ”), the principal sum of Three Million Two Hundred Fifty Thousand Dollars ($3,250,000), plus any and all accrued but unpaid interest thereon, in cash on March 10, 2028 (subject to Section 9, the “ Maturity Date ”).",
       "summary_quality": "high",
       "summary_flags": {
         "has_amount_or_percent": true,
         "has_date": true,
         "has_duration": false,
         "has_future": false,
-        "item": "1.01"
+        "item": "1.01",
+        "freshness_checked": true,
+        "has_current_action": true
       },
       "summary_source": "primary",
-      "summary_item": "1.01"
+      "summary_item": "1.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1868941",
@@ -1126,10 +1234,14 @@
         "has_date": false,
         "has_duration": false,
         "has_future": true,
-        "item": "7.01"
+        "item": "7.01",
+        "freshness_checked": true,
+        "has_current_action": false
       },
       "summary_source": "EX-99.1",
-      "summary_item": "7.01"
+      "summary_item": "7.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "1370946",
@@ -1159,7 +1271,9 @@
       "summary_quality": "low",
       "summary_flags": {},
       "summary_source": "EX-99.1",
-      "summary_item": "7.01"
+      "summary_item": "7.01",
+      "summary_filing_date": "2026-09-16",
+      "summary_freshness_version": "0.2.16"
     },
     {
       "cik": "2023554",
