@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import json, os, re, time
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date
 from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode, urljoin
@@ -272,7 +272,76 @@ ITEM_BOILERPLATE_RE = re.compile(
 )
 
 
-def detail_score(sent, item):
+MONTHS = {m.lower(): i for i, m in enumerate([
+    'January','February','March','April','May','June','July','August','September','October','November','December'
+], 1)}
+
+CURRENT_ACTION_RE = re.compile(
+    r'\b(?:today|on\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+20\d{2}|'
+    r'announced|entered into|executed|completed|closed|terminated|received|issued|reported|reaffirmed|raised|lowered|expects?|plans?|intends?|will|scheduled|targeting)\b',
+    re.I
+)
+HISTORICAL_CONTEXT_RE = re.compile(
+    r'\b(?:originally entered|previously entered|dated as of|as amended from time to time|since\s+20\d{2}|'
+    r'for the year ended|for the quarter ended|prior agreement|existing agreement|201[0-9])\b', re.I
+)
+
+def _safe_iso_date(value):
+    try:
+        return datetime.strptime(str(value or '')[:10], '%Y-%m-%d').date()
+    except Exception:
+        return None
+
+def _dates_in_sentence(sent):
+    out=[]
+    for m in re.finditer(r'\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),\s+(20\d{2})\b', sent, re.I):
+        try: out.append(date(int(m.group(3)), MONTHS[m.group(1).lower()], int(m.group(2))))
+        except Exception: pass
+    for m in re.finditer(r'\b(20\d{2})-(\d{2})-(\d{2})\b', sent):
+        try: out.append(date(int(m.group(1)), int(m.group(2)), int(m.group(3))))
+        except Exception: pass
+    return out
+
+def freshness_score(sent, filing_date):
+    """Prefer facts tied to the current filing; penalize stale contract history."""
+    fd=_safe_iso_date(filing_date)
+    if not fd:
+        return 0
+    dates=_dates_in_sentence(sent)
+    score=0
+    if CURRENT_ACTION_RE.search(sent):
+        score += 5
+    if HISTORICAL_CONTEXT_RE.search(sent):
+        score -= 10
+    for d in dates:
+        delta=(d-fd).days
+        if -7 <= delta <= 14:
+            score += 12
+        elif 15 <= delta <= 400:
+            score += 5  # future milestone
+        elif -45 <= delta < -7:
+            score += 1
+        elif delta < -180:
+            score -= 18
+        elif delta < -45:
+            score -= 7
+    # Bare old years in legal exhibits are often amendment history rather than the current event.
+    years=[int(y) for y in re.findall(r'\b(20\d{2})\b', sent)]
+    if years and max(years) <= fd.year-2 and not FUTURE_RE.search(sent):
+        score -= 12
+    return score
+
+def stale_sentence(sent, filing_date):
+    fd=_safe_iso_date(filing_date)
+    if not fd:
+        return False
+    ds=_dates_in_sentence(sent)
+    if ds and all((d-fd).days < -180 for d in ds) and not CURRENT_ACTION_RE.search(sent) and not FUTURE_RE.search(sent):
+        return True
+    years=[int(y) for y in re.findall(r'\b(20\d{2})\b', sent)]
+    return bool(years and max(years) <= fd.year-2 and HISTORICAL_CONTEXT_RE.search(sent) and not CURRENT_ACTION_RE.search(sent))
+
+def detail_score(sent, item, filing_date=None):
     if NOISE_RE.search(sent) or ITEM_BOILERPLATE_RE.search(sent):
         return -80
     score = 0
@@ -291,33 +360,36 @@ def detail_score(sent, item):
         score += 4
     if re.search(r'purchase price|consideration|proceeds|revenue|EPS|guidance|minimum bid|deadline|termination fee', sent, re.I):
         score += 6
+    score += freshness_score(sent, filing_date)
+    if stale_sentence(sent, filing_date):
+        score -= 25
     if len(sent) > 700:
         score -= 5
     return score
 
 
-def build_investor_summary(text, item, limit=2):
+def build_investor_summary(text, item, filing_date=None, limit=2):
     sentences = split_sentences(text)
     if not sentences:
         return [], 'low', {}
 
     candidates = []
     for i, sent in enumerate(sentences):
-        base = detail_score(sent, item)
+        base = detail_score(sent, item, filing_date)
         if base < 5:
             continue
         # Add one neighboring sentence only when it contributes a number, date or event term.
         windows = [(base, sent)]
         if i + 1 < len(sentences):
             nxt = sentences[i + 1]
-            if detail_score(nxt, item) >= 4 or MONEY_DETAIL_RE.search(nxt) or DATE_DETAIL_RE.search(nxt):
+            if detail_score(nxt, item, filing_date) >= 4 or MONEY_DETAIL_RE.search(nxt) or DATE_DETAIL_RE.search(nxt):
                 combo = sent + ' ' + nxt
-                windows.append((base + max(0, detail_score(nxt, item)) + 2, combo))
+                windows.append((base + max(0, detail_score(nxt, item, filing_date)) + 2, combo))
         if i > 0:
             prev = sentences[i - 1]
-            if len(prev) < 320 and (MONEY_DETAIL_RE.search(prev) or (ITEM_DETAIL_RE.get(item) and ITEM_DETAIL_RE[item].search(prev))):
+            if len(prev) < 320 and not stale_sentence(prev, filing_date) and (MONEY_DETAIL_RE.search(prev) or (ITEM_DETAIL_RE.get(item) and ITEM_DETAIL_RE[item].search(prev))):
                 combo = prev + ' ' + sent
-                windows.append((base + max(0, detail_score(prev, item)) + 1, combo))
+                windows.append((base + max(0, detail_score(prev, item, filing_date)) + 1, combo))
         candidates.extend(windows)
 
     candidates.sort(key=lambda x: (-x[0], len(x[1])))
@@ -325,6 +397,8 @@ def build_investor_summary(text, item, limit=2):
     for sc, text_block in candidates:
         text_block = re.sub(r'\s+', ' ', text_block).strip()
         if not text_block:
+            continue
+        if stale_sentence(text_block, filing_date):
             continue
         norm = re.sub(r'[^a-z0-9]+', ' ', text_block.lower())[:180]
         low_block = text_block.lower()
@@ -345,9 +419,11 @@ def build_investor_summary(text, item, limit=2):
         'has_duration': bool(DURATION_RE.search(joined)),
         'has_future': bool(FUTURE_RE.search(joined)),
         'item': item,
+        'freshness_checked': bool(_safe_iso_date(filing_date)),
+        'has_current_action': bool(CURRENT_ACTION_RE.search(joined)),
     }
     concrete_count = sum(bool(v) for k, v in flags.items() if k.startswith('has_'))
-    if picked and (flags['has_amount_or_percent'] or (item == '3.01' and flags['has_date'])):
+    if picked and (flags['has_amount_or_percent'] or (item == '3.01' and flags['has_date'])) and (flags['has_current_action'] or flags['has_future'] or not filing_date):
         quality = 'high'
     elif picked and concrete_count >= 1:
         quality = 'medium'
@@ -382,7 +458,7 @@ def enrich_filing(row):
         return row
 
     combined = '\n'.join(chunks)
-    investor, quality, flags = build_investor_summary(combined, item, 2)
+    investor, quality, flags = build_investor_summary(combined, item, row.get('filing_date'), 2)
     broad = pick_summary_sentences(combined, item, 3)
     if investor:
         row['investor_summary_sentences'] = investor
@@ -394,6 +470,8 @@ def enrich_filing(row):
     row['summary_flags'] = flags
     row['summary_source'] = '/'.join(dict.fromkeys(sources))
     row['summary_item'] = item
+    row['summary_filing_date'] = row.get('filing_date', '')
+    row['summary_freshness_version'] = '0.2.16'
     return row
 
 def main():
@@ -438,7 +516,7 @@ def main():
     payload = {
         'generated_at': datetime.now(timezone.utc).isoformat(),
         'source': 'SEC EDGAR latest 8-K/6-K via GitHub Actions',
-        'collector_version': '0.2.15',
+        'collector_version': '0.2.16',
         'excluded': excluded,
         'events': out[:150],
     }
