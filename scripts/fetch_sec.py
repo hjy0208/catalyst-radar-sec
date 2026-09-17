@@ -19,13 +19,14 @@ HEADERS = {
 ALLOWED = {'NASDAQ', 'NYSE', 'NYSE AMERICAN'}
 
 
-def get_text(url, retries=3, timeout=30):
+def get_text(url, retries=3, timeout=30, max_bytes=None):
     last = None
     for i in range(retries):
         try:
             req = Request(url, headers=HEADERS)
             with urlopen(req, timeout=timeout) as r:
-                return r.read().decode('utf-8', errors='replace')
+                data = r.read(max_bytes) if max_bytes else r.read()
+                return data.decode('utf-8', errors='replace')
         except Exception as e:
             last = e
             time.sleep(1.2 * (i + 1))
@@ -189,19 +190,20 @@ def pick_summary_sentences(text, item, limit=3):
     return out
 
 
-def filing_documents(index_url):
+def filing_documents(index_url, item=''):
     try:
-        html = get_text(index_url, retries=2)
+        html = get_text(index_url, retries=2, max_bytes=1800000)
     except Exception:
         return []
     rows = re.findall(r'(?is)<tr[^>]*>(.*?)</tr>', html)
-    primary, ex991, other99 = [], [], []
+    primary, ex991, other99, ex10, ex2 = [], [], [], [], []
     for row in rows:
         rowtxt = re.sub(r'\s+', ' ', strip_html(row))
         links = re.findall(r'(?i)href=["\']([^"\']+)["\']', row)
         if not links:
             continue
-        href = links[0]
+        # SEC index rows may contain more than one link. Prefer the actual document link.
+        href = next((x for x in links if re.search(r'\.(?:htm|html|txt)(?:$|\?)', x, re.I)), links[0])
         if not re.search(r'\.(?:htm|html|txt)(?:$|\?)', href, re.I):
             continue
         full = urljoin(index_url, href)
@@ -209,40 +211,190 @@ def filing_documents(index_url):
             ex991.append(full)
         elif re.search(r'\bEX-99(?:\.|\b)', rowtxt, re.I):
             other99.append(full)
+        elif re.search(r'\bEX-10(?:\.1|\.2|\b)', rowtxt, re.I):
+            ex10.append(full)
+        elif re.search(r'\bEX-2(?:\.1|\b)', rowtxt, re.I):
+            ex2.append(full)
         elif re.search(r'\b(?:8-K|6-K)\b', rowtxt, re.I) and not re.search(r'XBRL|XML|GRAPHIC', rowtxt, re.I):
             primary.append(full)
+
+    # Different 8-K items hide the useful details in different documents.
+    # Keep the request count small but include the exhibit most likely to contain investor-relevant facts.
+    if item == '1.01':
+        candidates = ex991[:1] + primary[:1] + ex10[:1]
+    elif item == '2.01':
+        candidates = ex991[:1] + primary[:1] + ex2[:1]
+    elif item == '2.02':
+        candidates = ex991[:1] + primary[:1] + other99[:1]
+    elif item in {'3.01', '3.02', '1.02'}:
+        candidates = primary[:1] + ex991[:1] + other99[:1]
+    else:
+        candidates = ex991[:1] + primary[:1] + other99[:1]
+
     docs = []
-    # 숫자/계획/보도자료는 EX-99.1에 가장 자주 있으므로 우선 읽고, 본문으로 보완합니다.
-    for u in ex991[:1] + primary[:1] + other99[:1]:
+    for u in candidates:
         if u not in docs:
             docs.append(u)
-    return docs
+    return docs[:3]
+
+
+MONEY_DETAIL_RE = re.compile(
+    r'[\$€£¥]\s?\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|thousand|m|bn))?|'
+    r'\b\d+(?:\.\d+)?\s*(?:million|billion|thousand)\s+(?:dollars?|shares?|units?)\b|'
+    r'\b\d{1,3}(?:,\d{3})+\s+(?:shares?|units?)\b|'
+    r'\b\d+(?:\.\d+)?%\b', re.I
+)
+DATE_DETAIL_RE = re.compile(
+    r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+20\d{2}\b|'
+    r'\b20\d{2}-\d{2}-\d{2}\b|\bQ[1-4]\s*20\d{2}\b|'
+    r'\b(?:first|second|third|fourth)\s+quarter\s+(?:of\s+)?20\d{2}\b|'
+    r'\b20\d{2}\s+(?:fiscal|calendar)\s+year\b', re.I
+)
+DURATION_RE = re.compile(r'\b\d+(?:\.\d+)?[- ]?(?:year|month|day)s?\b|\bthrough\s+20\d{2}\b|\buntil\s+', re.I)
+
+ITEM_DETAIL_RE = {
+    '1.01': re.compile(r'entered into|definitive agreement|material agreement|supply agreement|purchase agreement|credit agreement|term loan|customer agreement|contract|award|purchase order', re.I),
+    '1.02': re.compile(r'terminat|cancel|expire|expiration|ended|cease|termination fee|effective date|breach', re.I),
+    '2.01': re.compile(r'acquisition|acquired|purchase price|consideration|disposition|disposed|sale of|sold|completed the acquisition|closing', re.I),
+    '2.02': re.compile(r'revenue|net sales|sales|net income|operating income|EPS|earnings per share|adjusted EBITDA|gross margin|guidance|outlook|orders|backlog', re.I),
+    '3.01': re.compile(r'Nasdaq|NYSE|listing|delisting|deficien|compliance|minimum bid|cure period|deadline|hearing|notice', re.I),
+    '3.02': re.compile(r'issued|sold|shares|warrant|convertible|purchase price|offering|proceeds|private placement|securities|dilution', re.I),
+    '7.01': re.compile(r'guidance|clinical|FDA|approval|contract|agreement|acquisition|production|capacity|launch|results|revenue|EPS', re.I),
+    '8.01': re.compile(r'clinical|FDA|approval|contract|agreement|acquisition|production|capacity|launch|results|guidance|revenue|EPS', re.I),
+    '6-K': re.compile(r'clinical|FDA|approval|contract|agreement|acquisition|production|capacity|launch|results|guidance|revenue|EPS', re.I),
+}
+
+ITEM_BOILERPLATE_RE = re.compile(
+    r'this current report on form 8-k|this report on form 6-k|incorporated by reference|'
+    r'financial statements and exhibits|regulation fd disclosure|the foregoing description|'
+    r'filed herewith|furnished herewith|attached hereto|not be deemed.*filed|'
+    r'pursuant to item|item\s+\d+\.\d+', re.I
+)
+
+
+def detail_score(sent, item):
+    if NOISE_RE.search(sent) or ITEM_BOILERPLATE_RE.search(sent):
+        return -80
+    score = 0
+    detail_re = ITEM_DETAIL_RE.get(item)
+    if detail_re and detail_re.search(sent):
+        score += 10
+    if MONEY_DETAIL_RE.search(sent):
+        score += 14
+    if DATE_DETAIL_RE.search(sent):
+        score += 5
+    if DURATION_RE.search(sent):
+        score += 4
+    if FUTURE_RE.search(sent):
+        score += 4
+    if re.search(r'year over year|year-over-year|increased|decreased|grew|declined|raised|lowered|reaffirmed', sent, re.I):
+        score += 4
+    if re.search(r'purchase price|consideration|proceeds|revenue|EPS|guidance|minimum bid|deadline|termination fee', sent, re.I):
+        score += 6
+    if len(sent) > 700:
+        score -= 5
+    return score
+
+
+def build_investor_summary(text, item, limit=2):
+    sentences = split_sentences(text)
+    if not sentences:
+        return [], 'low', {}
+
+    candidates = []
+    for i, sent in enumerate(sentences):
+        base = detail_score(sent, item)
+        if base < 5:
+            continue
+        # Add one neighboring sentence only when it contributes a number, date or event term.
+        windows = [(base, sent)]
+        if i + 1 < len(sentences):
+            nxt = sentences[i + 1]
+            if detail_score(nxt, item) >= 4 or MONEY_DETAIL_RE.search(nxt) or DATE_DETAIL_RE.search(nxt):
+                combo = sent + ' ' + nxt
+                windows.append((base + max(0, detail_score(nxt, item)) + 2, combo))
+        if i > 0:
+            prev = sentences[i - 1]
+            if len(prev) < 320 and (MONEY_DETAIL_RE.search(prev) or (ITEM_DETAIL_RE.get(item) and ITEM_DETAIL_RE[item].search(prev))):
+                combo = prev + ' ' + sent
+                windows.append((base + max(0, detail_score(prev, item)) + 1, combo))
+        candidates.extend(windows)
+
+    candidates.sort(key=lambda x: (-x[0], len(x[1])))
+    picked = []
+    for sc, text_block in candidates:
+        text_block = re.sub(r'\s+', ' ', text_block).strip()
+        if not text_block:
+            continue
+        norm = re.sub(r'[^a-z0-9]+', ' ', text_block.lower())[:180]
+        low_block = text_block.lower()
+        if any((low_block in x.lower()) or (x.lower() in low_block) or (norm == re.sub(r'[^a-z0-9]+', ' ', x.lower())[:180]) for x in picked):
+            continue
+        # Avoid generic item descriptions unless they contain a concrete fact.
+        if not (MONEY_DETAIL_RE.search(text_block) or DATE_DETAIL_RE.search(text_block) or DURATION_RE.search(text_block) or FUTURE_RE.search(text_block)):
+            if item in {'1.01', '2.01', '2.02', '3.01', '3.02', '1.02'}:
+                continue
+        picked.append(text_block)
+        if len(picked) >= limit:
+            break
+
+    joined = ' '.join(picked)
+    flags = {
+        'has_amount_or_percent': bool(MONEY_DETAIL_RE.search(joined)),
+        'has_date': bool(DATE_DETAIL_RE.search(joined)),
+        'has_duration': bool(DURATION_RE.search(joined)),
+        'has_future': bool(FUTURE_RE.search(joined)),
+        'item': item,
+    }
+    concrete_count = sum(bool(v) for k, v in flags.items() if k.startswith('has_'))
+    if picked and (flags['has_amount_or_percent'] or (item == '3.01' and flags['has_date'])):
+        quality = 'high'
+    elif picked and concrete_count >= 1:
+        quality = 'medium'
+    else:
+        quality = 'low'
+    return picked, quality, flags
 
 
 def enrich_filing(row):
-    docs = filing_documents(row.get('url', ''))
-    if not docs:
-        return row
     item = primary_item(row.get('items', ''), row.get('form', ''))
+    docs = filing_documents(row.get('url', ''), item)
+    if not docs:
+        row['summary_quality'] = 'low'
+        return row
     chunks, sources = [], []
     for u in docs:
         try:
-            chunks.append(get_text(u, retries=2))
-            sources.append('EX-99.1' if re.search(r'(?:99[._-]?1|exh?99)', u, re.I) else 'primary')
-            time.sleep(0.16)
+            chunks.append(get_text(u, retries=2, max_bytes=2500000))
+            if re.search(r'(?:99[._-]?1|exh?99)', u, re.I):
+                sources.append('EX-99.1')
+            elif re.search(r'(?:ex|exhibit)[_\-]?10', u, re.I):
+                sources.append('EX-10')
+            elif re.search(r'(?:ex|exhibit)[_\-]?2', u, re.I):
+                sources.append('EX-2')
+            else:
+                sources.append('primary')
+            time.sleep(0.14)
         except Exception:
             continue
     if not chunks:
+        row['summary_quality'] = 'low'
         return row
-    combined = '\n'.join(chunks)
-    keys = pick_summary_sentences(combined, item, 3)
-    if keys:
-        row['key_sentences'] = keys
-        row['body_excerpt'] = ' '.join(keys)[:2400]
-        row['summary_source'] = 'EX-99.1/primary'
-        row['summary_item'] = item
-    return row
 
+    combined = '\n'.join(chunks)
+    investor, quality, flags = build_investor_summary(combined, item, 2)
+    broad = pick_summary_sentences(combined, item, 3)
+    if investor:
+        row['investor_summary_sentences'] = investor
+        row['body_excerpt'] = ' '.join(investor)[:2600]
+    elif broad:
+        row['key_sentences'] = broad
+        row['body_excerpt'] = ' '.join(broad)[:2200]
+    row['summary_quality'] = quality
+    row['summary_flags'] = flags
+    row['summary_source'] = '/'.join(dict.fromkeys(sources))
+    row['summary_item'] = item
+    return row
 
 def main():
     cmap = company_map()
@@ -281,12 +433,12 @@ def main():
         enrich_filing(r)
         enriched += 1
         time.sleep(0.16)
-    print(f'enriched {enriched} filings with EX-99.1/primary summary text')
+    print(f'enriched {enriched} filings with investor-focused SEC detail extraction')
 
     payload = {
         'generated_at': datetime.now(timezone.utc).isoformat(),
         'source': 'SEC EDGAR latest 8-K/6-K via GitHub Actions',
-        'collector_version': '0.2.14',
+        'collector_version': '0.2.15',
         'excluded': excluded,
         'events': out[:150],
     }
